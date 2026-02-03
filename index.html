@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- TRACKER VERSION: 3.2.0 - Updated: 2026-01-13 -->
-<!-- Changes: UI improvements - fixed logo stretch, reduced spacing, improved card visibility -->
+<!-- TRACKER VERSION: 4.0.0 - Updated: 2026-02-03 -->
+<!-- Changes: Complete color scheme redesign to match owl brand (teal/orange/gold theme) -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,12 +29,12 @@
         }
 
         :root {
-            --primary-blue: #1e88e5;
-            --primary-blue-light: #42a5f5;
-            --primary-blue-dark: #1565c0;
-            --accent-cyan: #00e5ff;
-            --accent-teal: #26a69a;
-            --accent-green: #66bb6a;
+            --primary-blue: #1E6B6B;
+            --primary-blue-light: #3A9494;
+            --primary-blue-dark: #0F3D3D;
+            --accent-cyan: #E8864A;
+            --accent-teal: #C75D2D;
+            --accent-green: #D4A843;
             --bg-dark: #0a0a0f;
             --bg-card: rgba(20, 20, 30, 0.8);
             --bg-card-solid: #14141e;
@@ -43,11 +43,11 @@
             --text-secondary: #a3a3a3;
             --text-muted: #737373;
             --border-color: rgba(255, 255, 255, 0.08);
-            --success: #22c55e;
+            --success: #D4A843;
             --danger: #ef4444;
-            --glow-blue: rgba(30, 136, 229, 0.4);
-            --glow-cyan: rgba(0, 229, 255, 0.3);
-            --glow-green: rgba(102, 187, 106, 0.3);
+            --glow-blue: rgba(30, 107, 107, 0.4);
+            --glow-cyan: rgba(199, 93, 45, 0.3);
+            --glow-green: rgba(212, 168, 67, 0.3);
         }
 
         html {
@@ -84,9 +84,9 @@
             width: 140%;
             height: 200%;
             background: 
-                radial-gradient(ellipse at 80% 20%, rgba(38, 166, 154, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 60%, rgba(102, 187, 106, 0.1) 0%, transparent 40%),
-                radial-gradient(ellipse at 30% 80%, rgba(0, 229, 255, 0.08) 0%, transparent 35%);
+                radial-gradient(ellipse at 80% 20%, rgba(30, 107, 107, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 60%, rgba(212, 168, 67, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 30% 80%, rgba(199, 93, 45, 0.08) 0%, transparent 35%);
             animation: waveMove 20s ease-in-out infinite alternate;
         }
 
@@ -100,11 +100,11 @@
             border-radius: 50%;
             background: 
                 conic-gradient(from 180deg at 50% 50%, 
-                    rgba(38, 166, 154, 0.2) 0deg,
-                    rgba(102, 187, 106, 0.15) 90deg,
-                    rgba(0, 229, 255, 0.1) 180deg,
-                    rgba(30, 136, 229, 0.15) 270deg,
-                    rgba(38, 166, 154, 0.2) 360deg);
+                    rgba(30, 107, 107, 0.2) 0deg,
+                    rgba(212, 168, 67, 0.15) 90deg,
+                    rgba(199, 93, 45, 0.1) 180deg,
+                    rgba(30, 107, 107, 0.15) 270deg,
+                    rgba(30, 107, 107, 0.2) 360deg);
             filter: blur(80px);
             animation: waveRotate 30s linear infinite;
         }
@@ -139,7 +139,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 2px solid rgba(38, 166, 154, 0.1);
+            border: 2px solid rgba(30, 107, 107, 0.1);
             animation: arcPulse 4s ease-in-out infinite;
         }
 
@@ -152,7 +152,7 @@
             width: 70%;
             height: 70%;
             border-radius: 50%;
-            border: 2px solid rgba(0, 229, 255, 0.08);
+            border: 2px solid rgba(199, 93, 45, 0.08);
             animation: arcPulse 4s ease-in-out infinite 1s;
         }
 
@@ -172,8 +172,8 @@
             pointer-events: none;
             z-index: 0;
             background: 
-                radial-gradient(ellipse at 50% -20%, rgba(30, 136, 229, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 100% 50%, rgba(38, 166, 154, 0.04) 0%, transparent 40%);
+                radial-gradient(ellipse at 50% -20%, rgba(30, 107, 107, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 50%, rgba(199, 93, 45, 0.04) 0%, transparent 40%);
         }
 
         /* Ensure content is above background */
@@ -275,7 +275,7 @@
             max-width: 440px;
             box-shadow: 
                 0 25px 80px rgba(0, 0, 0, 0.5),
-                0 0 60px rgba(38, 166, 154, 0.1),
+                0 0 60px rgba(30, 107, 107, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
@@ -295,7 +295,7 @@
         .auth-logo-full img, .auth-logo-full svg {
             max-width: 340px;
             height: auto;
-            filter: drop-shadow(0 8px 30px rgba(30, 136, 229, 0.3));
+            filter: drop-shadow(0 8px 30px rgba(30, 107, 107, 0.3));
         }
 
         .auth-subtitle {
@@ -337,7 +337,7 @@
         .form-group input:focus {
             outline: none;
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.15);
+            box-shadow: 0 0 0 3px rgba(30, 107, 107, 0.15);
         }
 
         .form-group input::placeholder {
@@ -377,8 +377,8 @@
         .auth-btn:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 
-                0 12px 35px rgba(30, 136, 229, 0.4),
-                0 0 20px rgba(0, 229, 255, 0.3);
+                0 12px 35px rgba(30, 107, 107, 0.4),
+                0 0 20px rgba(199, 93, 45, 0.3);
         }
 
         .auth-btn:disabled {
@@ -423,7 +423,7 @@
             border: 1px solid rgba(34, 197, 94, 0.3);
             border-radius: 10px;
             padding: 12px 16px;
-            color: #4ade80;
+            color: #3A9494;
             font-size: 0.9rem;
             text-align: center;
         }
@@ -456,7 +456,7 @@
         .header-logo img {
             max-width: 500px;
             height: auto;
-            filter: drop-shadow(0 8px 30px rgba(30, 136, 229, 0.3));
+            filter: drop-shadow(0 8px 30px rgba(30, 107, 107, 0.3));
         }
 
         /* Animated Logo */
@@ -483,7 +483,7 @@
 
         .logo-main:hover {
             transform: scale(1.02);
-            filter: drop-shadow(0 12px 40px rgba(30, 136, 229, 0.5));
+            filter: drop-shadow(0 12px 40px rgba(30, 107, 107, 0.5));
         }
 
         header p {
@@ -580,7 +580,7 @@
             flex-direction: column;
             box-shadow: 
                 -20px 0 60px rgba(0, 0, 0, 0.5),
-                -5px 0 20px rgba(38, 166, 154, 0.1);
+                -5px 0 20px rgba(30, 107, 107, 0.1);
         }
 
         .settings-sidebar.active {
@@ -637,10 +637,10 @@
 
         /* User Profile Section */
         .user-profile-section {
-            background: rgba(99, 102, 241, 0.08);
+            background: rgba(30, 107, 107, 0.08);
             padding: 20px;
             border-radius: 16px;
-            border: 1px solid rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(30, 107, 107, 0.15);
         }
 
         .user-profile-header {
@@ -655,7 +655,7 @@
         .user-avatar-large {
             width: 52px;
             height: 52px;
-            background: linear-gradient(135deg, #6366f1 0%, #26a69a 100%);
+            background: linear-gradient(135deg, #1E6B6B 0%, #C75D2D 100%);
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -729,18 +729,18 @@
 
         .setting-item select:focus, .setting-item input:focus {
             outline: none;
-            border-color: rgba(99, 102, 241, 0.5);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            border-color: rgba(30, 107, 107, 0.5);
+            box-shadow: 0 0 0 3px rgba(30, 107, 107, 0.1);
         }
 
         .currency-preview {
             margin-top: 12px;
             padding: 14px 16px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: rgba(30, 107, 107, 0.1);
+            border: 1px solid rgba(30, 107, 107, 0.2);
             border-radius: 10px;
             font-size: 0.9rem;
-            color: #a5b4fc;
+            color: #7DC3C3;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -759,10 +759,10 @@
         .month-nav-controls button {
             flex: 1;
             padding: 12px 16px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: rgba(30, 107, 107, 0.1);
+            border: 1px solid rgba(30, 107, 107, 0.2);
             border-radius: 10px;
-            color: #a5b4fc;
+            color: #7DC3C3;
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
@@ -770,8 +770,8 @@
         }
 
         .month-nav-controls button:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: rgba(99, 102, 241, 0.4);
+            background: rgba(30, 107, 107, 0.2);
+            border-color: rgba(30, 107, 107, 0.4);
             transform: translateY(-2px);
         }
 
@@ -789,17 +789,17 @@
         .year-selector button {
             width: 36px;
             height: 36px;
-            background: rgba(99, 102, 241, 0.15);
-            border: 1px solid rgba(99, 102, 241, 0.3);
+            background: rgba(30, 107, 107, 0.15);
+            border: 1px solid rgba(30, 107, 107, 0.3);
             border-radius: 8px;
-            color: #a5b4fc;
+            color: #7DC3C3;
             font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .year-selector button:hover {
-            background: rgba(99, 102, 241, 0.3);
+            background: rgba(30, 107, 107, 0.3);
         }
 
         .year-selector span {
@@ -827,20 +827,20 @@
         }
 
         .month-grid button:hover {
-            background: rgba(99, 102, 241, 0.15);
-            border-color: rgba(99, 102, 241, 0.3);
-            color: #a5b4fc;
+            background: rgba(30, 107, 107, 0.15);
+            border-color: rgba(30, 107, 107, 0.3);
+            color: #7DC3C3;
         }
 
         .month-grid button.active {
-            background: linear-gradient(135deg, #6366f1 0%, #26a69a 100%);
+            background: linear-gradient(135deg, #1E6B6B 0%, #C75D2D 100%);
             border-color: transparent;
             color: white;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(30, 107, 107, 0.3);
         }
 
         .month-grid button.current-month {
-            border-color: rgba(34, 197, 94, 0.5);
+            border-color: rgba(212, 168, 67, 0.5);
         }
 
         .month-grid button.future {
@@ -870,7 +870,7 @@
         .btn-export {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.2);
-            color: #4ade80;
+            color: #3A9494;
         }
 
         .btn-export:hover {
@@ -918,7 +918,7 @@
         .storage-dot {
             width: 8px;
             height: 8px;
-            background: #22c55e;
+            background: #D4A843;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -957,7 +957,7 @@
             position: absolute;
             inset: -1px;
             border-radius: 50px;
-            background: linear-gradient(135deg, rgba(30, 136, 229, 0.3), rgba(0, 229, 255, 0.2), rgba(38, 166, 154, 0.3));
+            background: linear-gradient(135deg, rgba(30, 107, 107, 0.3), rgba(199, 93, 45, 0.2), rgba(212, 168, 67, 0.3));
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: -1;
@@ -980,7 +980,7 @@
             overflow: hidden;
             box-shadow: 
                 0 25px 80px rgba(0, 0, 0, 0.4),
-                0 0 40px rgba(38, 166, 154, 0.08),
+                0 0 40px rgba(30, 107, 107, 0.08),
                 inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
@@ -991,7 +991,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, rgba(38, 166, 154, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at center, rgba(30, 107, 107, 0.05) 0%, transparent 50%);
             animation: balanceGlow 12s ease-in-out infinite;
         }
 
@@ -1002,7 +1002,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #1e88e5, #00e5ff, #26a69a, #66bb6a);
+            background: linear-gradient(90deg, #1E6B6B, #3A9494, #C75D2D, #D4A843);
             border-radius: 28px 28px 0 0;
         }
 
@@ -1035,14 +1035,14 @@
         }
 
         .balance-hero .balance-amount.positive {
-            background: linear-gradient(135deg, #22c55e 0%, #4ade80 50%, #86efac 100%);
+            background: linear-gradient(135deg, #1E6B6B 0%, #3A9494 50%, #5BADAD 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .balance-hero .balance-amount.negative {
-            background: linear-gradient(135deg, #ef4444 0%, #f87171 50%, #fca5a5 100%);
+            background: linear-gradient(135deg, #C75D2D 0%, #E8864A 50%, #F5A67A 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1144,19 +1144,19 @@
         }
 
         .summary-card.income::before {
-            background: linear-gradient(90deg, #22c55e, #4ade80, #86efac);
+            background: linear-gradient(90deg, #1E6B6B, #3A9494, #5BADAD);
         }
 
         .summary-card.income::after {
-            box-shadow: 0 0 40px rgba(34, 197, 94, 0.15);
+            box-shadow: 0 0 40px rgba(30, 107, 107, 0.15);
         }
 
         .summary-card.expense::before {
-            background: linear-gradient(90deg, #ef4444, #f87171, #fca5a5);
+            background: linear-gradient(90deg, #C75D2D, #E8864A, #F5A67A);
         }
 
         .summary-card.expense::after {
-            box-shadow: 0 0 40px rgba(239, 68, 68, 0.15);
+            box-shadow: 0 0 40px rgba(199, 93, 45, 0.15);
         }
 
         .summary-card h3 {
@@ -1175,14 +1175,14 @@
         }
 
         .summary-card.income .amount {
-            background: linear-gradient(135deg, #22c55e, #4ade80);
+            background: linear-gradient(135deg, #1E6B6B, #3A9494);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .summary-card.expense .amount {
-            background: linear-gradient(135deg, #ef4444, #f87171);
+            background: linear-gradient(135deg, #C75D2D, #E8864A);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1214,7 +1214,7 @@
             background: rgba(168, 85, 247, 0.1);
             border: 1px solid rgba(168, 85, 247, 0.2);
             border-radius: 10px;
-            color: #c084fc;
+            color: #D4A843;
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
@@ -1290,13 +1290,13 @@
 
         .goal-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #a855f7, #c084fc);
+            background: linear-gradient(90deg, #D4A843, #E8C66A);
             border-radius: 4px;
             transition: width 0.5s ease;
         }
 
         .goal-progress-fill.complete {
-            background: linear-gradient(90deg, #22c55e, #4ade80);
+            background: linear-gradient(90deg, #1E6B6B, #3A9494);
         }
 
         .goal-amounts {
@@ -1306,7 +1306,7 @@
         }
 
         .goal-current {
-            color: #c084fc;
+            color: #D4A843;
             font-weight: 600;
         }
 
@@ -1333,7 +1333,7 @@
         .goal-add-funds {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.2);
-            color: #4ade80;
+            color: #3A9494;
         }
 
         .goal-add-funds:hover {
@@ -1504,7 +1504,7 @@
 
         .icon-option.selected {
             background: rgba(168, 85, 247, 0.2);
-            border-color: #a855f7;
+            border-color: #C75D2D;
         }
 
         .modal-actions {
@@ -1534,14 +1534,14 @@
         }
 
         .btn-save {
-            background: linear-gradient(135deg, #a855f7 0%, #26a69a 100%);
+            background: linear-gradient(135deg, #D4A843 0%, #C75D2D 100%);
             border: none;
             color: white;
         }
 
         .btn-save:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+            box-shadow: 0 8px 25px rgba(212, 168, 67, 0.4);
         }
 
         /* Delete Confirmation Modal */
@@ -1585,7 +1585,7 @@
 
         .recurring-item:hover,
         .loan-item:hover {
-            border-color: rgba(99, 102, 241, 0.3);
+            border-color: rgba(30, 107, 107, 0.3);
             background: rgba(0, 0, 0, 0.3);
         }
 
@@ -1625,7 +1625,7 @@
         }
 
         .recurring-amount.income {
-            color: #4ade80;
+            color: #3A9494;
         }
 
         .loan-details {
@@ -1641,7 +1641,7 @@
 
         .loan-rate {
             font-size: 0.8rem;
-            color: #a855f7;
+            color: #C75D2D;
         }
 
         .loan-progress {
@@ -1655,7 +1655,7 @@
 
         .loan-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #22c55e, #4ade80);
+            background: linear-gradient(90deg, #1E6B6B, #3A9494);
             border-radius: 3px;
             transition: width 0.5s ease;
         }
@@ -1679,12 +1679,12 @@
         }
 
         .btn-edit-item {
-            background: rgba(99, 102, 241, 0.2);
-            color: #a5b4fc;
+            background: rgba(30, 107, 107, 0.2);
+            color: #7DC3C3;
         }
 
         .btn-edit-item:hover {
-            background: rgba(99, 102, 241, 0.4);
+            background: rgba(30, 107, 107, 0.4);
         }
 
         .btn-delete-item {
@@ -1717,7 +1717,7 @@
 
         .status-badge.active {
             background: rgba(34, 197, 94, 0.2);
-            color: #4ade80;
+            color: #3A9494;
         }
 
         .status-badge.inactive {
@@ -1869,7 +1869,7 @@
         }
 
         .card.form-card.income-mode h2 {
-            color: #4ade80;
+            color: #3A9494;
         }
 
         /* Tabs */
@@ -1902,15 +1902,15 @@
         }
 
         .tab.active.expense-tab {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            background: linear-gradient(135deg, #C75D2D 0%, #A04A22 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 4px 15px rgba(199, 93, 45, 0.4);
         }
 
         .tab.active.income-tab {
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            background: linear-gradient(135deg, #1E6B6B 0%, #0F3D3D 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+            box-shadow: 0 4px 15px rgba(30, 107, 107, 0.4);
         }
 
         /* Form Elements */
@@ -1995,8 +1995,8 @@
 
         .inline-form input:focus, .inline-form select:focus {
             outline: none;
-            border-color: rgba(99, 102, 241, 0.5);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            border-color: rgba(30, 107, 107, 0.5);
+            box-shadow: 0 0 0 3px rgba(30, 107, 107, 0.1);
         }
 
         .expense-mode .inline-form input:focus,
@@ -2023,7 +2023,7 @@
         .submit-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #6366f1 0%, #26a69a 100%);
+            background: linear-gradient(135deg, #1E6B6B 0%, #3A9494 100%);
             color: white;
             border: none;
             border-radius: 14px;
@@ -2054,8 +2054,8 @@
         .submit-btn:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 
-                0 12px 35px rgba(99, 102, 241, 0.4),
-                0 0 20px rgba(38, 166, 154, 0.2);
+                0 12px 35px rgba(30, 107, 107, 0.4),
+                0 0 20px rgba(199, 93, 45, 0.2);
         }
 
         .submit-btn:disabled {
@@ -2064,23 +2064,23 @@
         }
 
         .expense-mode .submit-btn {
-            background: linear-gradient(135deg, #ef4444 0%, #00e5ff 100%);
+            background: linear-gradient(135deg, #C75D2D 0%, #E8864A 100%);
         }
 
         .expense-mode .submit-btn:hover:not(:disabled) {
             box-shadow: 
-                0 12px 35px rgba(239, 68, 68, 0.4),
-                0 0 20px rgba(0, 229, 255, 0.2);
+                0 12px 35px rgba(199, 93, 45, 0.4),
+                0 0 20px rgba(232, 134, 74, 0.2);
         }
 
         .income-mode .submit-btn {
-            background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+            background: linear-gradient(135deg, #1E6B6B 0%, #3A9494 100%);
         }
 
         .income-mode .submit-btn:hover:not(:disabled) {
             box-shadow: 
-                0 12px 35px rgba(34, 197, 94, 0.4),
-                0 0 20px rgba(16, 185, 129, 0.2);
+                0 12px 35px rgba(30, 107, 107, 0.4),
+                0 0 20px rgba(58, 148, 148, 0.2);
         }
 
         /* Chart Container */
@@ -2178,11 +2178,11 @@
         }
 
         .transaction.income {
-            border-left-color: #22c55e;
+            border-left-color: #1E6B6B;
         }
 
         .transaction.expense {
-            border-left-color: #ef4444;
+            border-left-color: #C75D2D;
         }
 
         .transaction-info h4 {
@@ -2206,7 +2206,7 @@
         }
 
         .transaction-amount.positive {
-            color: #4ade80;
+            color: #3A9494;
         }
 
         .transaction-amount.negative {
@@ -2252,7 +2252,7 @@
 
         .search-box input:focus {
             outline: none;
-            border-color: rgba(99, 102, 241, 0.5);
+            border-color: rgba(30, 107, 107, 0.5);
         }
 
         .filter-row {
@@ -2280,7 +2280,7 @@
 
         .filter-row select:focus {
             outline: none;
-            border-color: rgba(99, 102, 241, 0.5);
+            border-color: rgba(30, 107, 107, 0.5);
         }
 
         /* Empty State */
@@ -2316,7 +2316,7 @@
         .loading-spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(30, 136, 229, 0.2);
+            border: 3px solid rgba(30, 107, 107, 0.2);
             border-top-color: var(--primary-blue);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -2401,25 +2401,25 @@
 
         const categoryColors = {
             // English expense
-            'Groceries': '#ef4444', 'Dining Out': '#1e88e5', 'Gas & Fuel': '#f59e0b',
-            'Transportation': '#eab308', 'Shopping': '#84cc16', 'Entertainment': '#22c55e',
-            'Bills & Utilities': '#14b8a6', 'Rent & Housing': '#06b6d4', 'Health & Medical': '#0ea5e9',
-            'Education': '#3b82f6', 'Travel': '#26a69a', 'Personal Care': '#a855f7',
-            'Subscriptions': '#d946ef', 'Insurance': '#00e5ff', 'Kids & Family': '#f43f5e',
+            'Groceries': '#C75D2D', 'Dining Out': '#1E6B6B', 'Gas & Fuel': '#D4A843',
+            'Transportation': '#E8864A', 'Shopping': '#84cc16', 'Entertainment': '#3A9494',
+            'Bills & Utilities': '#0F3D3D', 'Rent & Housing': '#06b6d4', 'Health & Medical': '#0ea5e9',
+            'Education': '#3b82f6', 'Travel': '#1E6B6B', 'Personal Care': '#C75D2D',
+            'Subscriptions': '#d946ef', 'Insurance': '#E8864A', 'Kids & Family': '#f43f5e',
             'Pets': '#fb7185', 'Gifts': '#64748b', 'Loan Payment': '#475569', 'Other': '#94a3b8',
             // Hebrew expense
-            'מצרכים': '#ef4444', 'מסעדות': '#1e88e5', 'דלק': '#f59e0b',
-            'תחבורה': '#eab308', 'קניות': '#84cc16', 'בידור': '#22c55e',
-            'חשבונות': '#14b8a6', 'שכירות ודיור': '#06b6d4', 'בריאות': '#0ea5e9',
-            'חינוך': '#3b82f6', 'נסיעות': '#26a69a', 'טיפוח אישי': '#a855f7',
-            'מנויים': '#d946ef', 'ביטוח': '#00e5ff', 'ילדים ומשפחה': '#f43f5e',
+            'מצרכים': '#C75D2D', 'מסעדות': '#1E6B6B', 'דלק': '#D4A843',
+            'תחבורה': '#E8864A', 'קניות': '#84cc16', 'בידור': '#3A9494',
+            'חשבונות': '#0F3D3D', 'שכירות ודיור': '#06b6d4', 'בריאות': '#0ea5e9',
+            'חינוך': '#3b82f6', 'נסיעות': '#1E6B6B', 'טיפוח אישי': '#C75D2D',
+            'מנויים': '#d946ef', 'ביטוח': '#E8864A', 'ילדים ומשפחה': '#f43f5e',
             'חיות מחמד': '#fb7185', 'מתנות': '#64748b', 'תשלום הלוואה': '#475569', 'אחר': '#94a3b8',
             // English income
-            'Salary': '#22c55e', 'Freelance': '#10b981', 'Business': '#14b8a6',
-            'Investments': '#06b6d4', 'Rental Income': '#0ea5e9', 'Refunds': '#3b82f6', 'Bonus': '#26a69a',
+            'Salary': '#1E6B6B', 'Freelance': '#3A9494', 'Business': '#0F3D3D',
+            'Investments': '#D4A843', 'Rental Income': '#0ea5e9', 'Refunds': '#3b82f6', 'Bonus': '#C75D2D',
             // Hebrew income
-            'משכורת': '#22c55e', 'פרילנס': '#10b981', 'עסק': '#14b8a6',
-            'השקעות': '#06b6d4', 'הכנסה משכירות': '#0ea5e9', 'החזרים': '#3b82f6', 'בונוס': '#26a69a'
+            'משכורת': '#1E6B6B', 'פרילנס': '#3A9494', 'עסק': '#0F3D3D',
+            'השקעות': '#D4A843', 'הכנסה משכירות': '#0ea5e9', 'החזרים': '#3b82f6', 'בונוס': '#C75D2D'
         };
 
         const goalIcons = ['🎯', '✈️', '🏠', '🚗', '💻', '📱', '🎓', '💍', '🎁', '🏝️', '🎮', '📷'];
@@ -3734,7 +3734,7 @@
                             <h3>💰 Add Funds</h3>
                             <form onSubmit={handleAddFunds}>
                                 <div className="form-group">
-                                    <label>Goal: <span style={{ color: '#c084fc' }}>{selectedGoal?.name}</span></label>
+                                    <label>Goal: <span style={{ color: '#D4A843' }}>{selectedGoal?.name}</span></label>
                                 </div>
                                 <div className="form-group">
                                     <label>Amount to Add</label>
@@ -4201,8 +4201,8 @@
                 objectFit: 'contain',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                 filter: isHovered 
-                    ? 'drop-shadow(0 12px 40px rgba(30, 136, 229, 0.5)) drop-shadow(0 0 20px rgba(0, 229, 255, 0.3))'
-                    : 'drop-shadow(0 8px 30px rgba(30, 136, 229, 0.35))',
+                    ? 'drop-shadow(0 12px 40px rgba(30, 107, 107, 0.5)) drop-shadow(0 0 20px rgba(199, 93, 45, 0.3))'
+                    : 'drop-shadow(0 8px 30px rgba(30, 107, 107, 0.35))',
                 transform: isHovered ? 'scale(1.03)' : 'scale(1)'
             };
             
