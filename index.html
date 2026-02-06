@@ -2421,8 +2421,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 0 4px;
+            margin-bottom: 24px;
+            padding: 4px;
         }
 
         .dashboard-title {
@@ -2446,12 +2446,24 @@
 
         /* Featured Balance Card */
         .featured-card {
-            background: var(--bg-card);
-            border-radius: 18px;
-            padding: 28px 24px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(16, 185, 129, 0.05));
+            border-radius: 20px;
+            padding: 32px 24px;
             margin-bottom: 16px;
-            border-top: 3px solid;
-            border-image: linear-gradient(90deg, var(--accent-income), var(--primary-blue)) 1;
+            border: 2px solid rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-income), var(--primary-blue));
         }
 
         .featured-card h2 {
@@ -2490,20 +2502,33 @@
             background: var(--bg-card);
             border-radius: 16px;
             padding: 20px 16px;
-            border-top: 2px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(107, 114, 128, 0.3);
         }
 
         .stat-card:active {
             transform: scale(0.98);
         }
 
-        .stat-card.income {
-            border-top-color: var(--accent-income);
+        .stat-card.income::before {
+            background: var(--accent-income);
         }
 
-        .stat-card.expense {
-            border-top-color: var(--accent-expense);
+        .stat-card.expense::before {
+            background: var(--accent-expense);
         }
 
         .stat-card h3 {
@@ -2540,7 +2565,8 @@
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 16px;
-            border-top: 2px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
         }
 
         .full-width-card h3 {
@@ -2558,10 +2584,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(20, 20, 30, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 15, 25, 0.98);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-top: 1px solid rgba(37, 99, 235, 0.2);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: space-around;
             padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
@@ -4032,11 +4059,22 @@
                         <div className="dashboard-content">
                             {/* Dashboard Header */}
                             <div className="dashboard-header">
-                                <div>
-                                    <h1 style={{margin: 0, fontSize: '2rem', fontWeight: '700'}}>Tracker</h1>
-                                    <p style={{margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem'}}>{getMonthYear(viewDate)}</p>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                                    <img
+                                        src={OWL_ONLY_IMAGE}
+                                        alt="Logo"
+                                        style={{
+                                            width: '45px',
+                                            height: '45px',
+                                            objectFit: 'contain'
+                                        }}
+                                    />
+                                    <div>
+                                        <h1 style={{margin: 0, fontSize: '1.8rem', fontWeight: '700', lineHeight: '1'}}>Tracker</h1>
+                                        <p style={{margin: '4px 0 0 0', color: 'var(--text-muted)', fontSize: '0.85rem'}}>{getMonthYear(viewDate)}</p>
+                                    </div>
                                 </div>
-                                <div className="user-avatar" style={{width: '40px', height: '40px', borderRadius: '50%', background: 'var(--primary-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 'bold'}}>
+                                <div className="user-avatar" style={{width: '42px', height: '42px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', fontWeight: 'bold', boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)'}}>
                                     {userName ? userName[0].toUpperCase() : user.email[0].toUpperCase()}
                                 </div>
                             </div>
@@ -4052,27 +4090,27 @@
 
                             {/* Stats Grid - 2x2 */}
                             <div className="stats-grid">
-                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-income)'}}>
-                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('totalIncome')}</div>
+                                <div className="stat-card income">
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px', letterSpacing: '0.5px'}}>{t('totalIncome')}</div>
                                     <div style={{fontSize: '1.8rem', fontWeight: '700', color: 'var(--accent-income)'}}>{formatCurrency(income, currency)}</div>
                                 </div>
-                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-expense)'}}>
-                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('totalExpenses')}</div>
+                                <div className="stat-card expense">
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px', letterSpacing: '0.5px'}}>{t('totalExpenses')}</div>
                                     <div style={{fontSize: '1.8rem', fontWeight: '700', color: 'var(--accent-expense)'}}>{formatCurrency(expenses, currency)}</div>
                                 </div>
-                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--primary-blue)'}}>
-                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('savingsGoals')}</div>
-                                    <div style={{fontSize: '1.4rem', fontWeight: '700'}}>{goals.length} {goals.length === 1 ? 'Goal' : 'Goals'}</div>
+                                <div className="stat-card">
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px', letterSpacing: '0.5px'}}>{t('savingsGoals')}</div>
+                                    <div style={{fontSize: '1.4rem', fontWeight: '700', color: 'var(--primary-blue)'}}>{goals.length} {goals.length === 1 ? 'Goal' : 'Goals'}</div>
                                 </div>
-                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-neutral)'}}>
-                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('topCategory')}</div>
-                                    <div style={{fontSize: '1.4rem', fontWeight: '700'}}>{topCategory ? topCategory[0] : '-'}</div>
+                                <div className="stat-card">
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px', letterSpacing: '0.5px'}}>{t('topCategory')}</div>
+                                    <div style={{fontSize: '1.4rem', fontWeight: '700', color: 'var(--accent-neutral)'}}>{topCategory ? topCategory[0] : '-'}</div>
                                 </div>
                             </div>
 
                             {/* Recent Transactions - Full Width */}
-                            <div className="full-width-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', marginBottom: '16px'}}>
-                                <h3 style={{margin: '0 0 16px 0', fontSize: '1.1rem', fontWeight: '700'}}><span className="icon">📝</span> {t('transactions')}</h3>
+                            <div className="full-width-card">
+                                <h3 style={{margin: '0 0 16px 0', fontSize: '1.1rem', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '8px'}}><span style={{fontSize: '1.2rem'}}>📝</span> {t('transactions')}</h3>
                                 <div className="transactions-list" style={{maxHeight: '300px', overflowY: 'auto'}}>
                                     {filteredTransactions.length === 0 ? (
                                         <div className="empty-state">
@@ -4184,12 +4222,12 @@
 
                             {/* Quick Stats in Add View */}
                             <div className="stats-grid">
-                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-income)'}}>
-                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('totalIncome')}</div>
+                                <div className="stat-card income">
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px', letterSpacing: '0.5px'}}>{t('totalIncome')}</div>
                                     <div style={{fontSize: '1.8rem', fontWeight: '700', color: 'var(--accent-income)'}}>{formatCurrency(income, currency)}</div>
                                 </div>
-                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-expense)'}}>
-                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('totalExpenses')}</div>
+                                <div className="stat-card expense">
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px', letterSpacing: '0.5px'}}>{t('totalExpenses')}</div>
                                     <div style={{fontSize: '1.8rem', fontWeight: '700', color: 'var(--accent-expense)'}}>{formatCurrency(expenses, currency)}</div>
                                 </div>
                             </div>
