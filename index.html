@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- TRACKER VERSION: 4.0.0 - Updated: 2026-02-03 -->
-<!-- Changes: Complete color scheme redesign to match owl brand (teal/orange/gold theme) -->
+<!-- TRACKER VERSION: 5.0.0 - Updated: 2026-02-06 -->
+<!-- Changes: Complete color scheme redesign to match new owl brand (blue/purple/cyan theme) -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,12 +29,12 @@
         }
 
         :root {
-            --primary-blue: #1E6B6B;
-            --primary-blue-light: #3A9494;
-            --primary-blue-dark: #0F3D3D;
-            --accent-cyan: #E8864A;
-            --accent-teal: #C75D2D;
-            --accent-green: #D4A843;
+            --primary-blue: #3366FF;
+            --primary-blue-light: #5C8AFF;
+            --primary-blue-dark: #1A3399;
+            --accent-cyan: #00D9FF;
+            --accent-purple: #CC33FF;
+            --accent-orange: #FF9933;
             --bg-dark: #0a0a0f;
             --bg-card: rgba(20, 20, 30, 0.8);
             --bg-card-solid: #14141e;
@@ -43,11 +43,11 @@
             --text-secondary: #a3a3a3;
             --text-muted: #737373;
             --border-color: rgba(255, 255, 255, 0.08);
-            --success: #D4A843;
+            --success: #00D9FF;
             --danger: #ef4444;
-            --glow-blue: rgba(30, 107, 107, 0.4);
-            --glow-cyan: rgba(199, 93, 45, 0.3);
-            --glow-green: rgba(212, 168, 67, 0.3);
+            --glow-blue: rgba(51, 102, 255, 0.4);
+            --glow-cyan: rgba(0, 217, 255, 0.3);
+            --glow-purple: rgba(204, 51, 255, 0.3);
         }
 
         html {
@@ -83,10 +83,10 @@
             right: -20%;
             width: 140%;
             height: 200%;
-            background: 
-                radial-gradient(ellipse at 80% 20%, rgba(30, 107, 107, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 60%, rgba(212, 168, 67, 0.1) 0%, transparent 40%),
-                radial-gradient(ellipse at 30% 80%, rgba(199, 93, 45, 0.08) 0%, transparent 35%);
+            background:
+                radial-gradient(ellipse at 80% 20%, rgba(51, 102, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 60%, rgba(204, 51, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 30% 80%, rgba(0, 217, 255, 0.08) 0%, transparent 35%);
             animation: waveMove 20s ease-in-out infinite alternate;
         }
 
@@ -172,8 +172,8 @@
             pointer-events: none;
             z-index: 0;
             background: 
-                radial-gradient(ellipse at 50% -20%, rgba(30, 107, 107, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 100% 50%, rgba(199, 93, 45, 0.04) 0%, transparent 40%);
+                radial-gradient(ellipse at 50% -20%, rgba(51, 102, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 50%, rgba(204, 51, 255, 0.04) 0%, transparent 40%);
         }
 
         /* Ensure content is above background */
@@ -295,7 +295,7 @@
         .auth-logo-full img, .auth-logo-full svg {
             max-width: 340px;
             height: auto;
-            filter: drop-shadow(0 8px 30px rgba(30, 107, 107, 0.3));
+            filter: drop-shadow(0 8px 30px rgba(51, 102, 255, 0.3));
         }
 
         .auth-subtitle {
@@ -423,7 +423,7 @@
             border: 1px solid rgba(34, 197, 94, 0.3);
             border-radius: 10px;
             padding: 12px 16px;
-            color: #3A9494;
+            color: #5C8AFF;
             font-size: 0.9rem;
             text-align: center;
         }
@@ -456,7 +456,7 @@
         .header-logo img {
             max-width: 500px;
             height: auto;
-            filter: drop-shadow(0 8px 30px rgba(30, 107, 107, 0.3));
+            filter: drop-shadow(0 8px 30px rgba(51, 102, 255, 0.3));
         }
 
         /* Animated Logo */
@@ -655,7 +655,7 @@
         .user-avatar-large {
             width: 52px;
             height: 52px;
-            background: linear-gradient(135deg, #1E6B6B 0%, #C75D2D 100%);
+            background: linear-gradient(135deg, #3366FF 0%, #CC33FF 100%);
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -790,7 +790,7 @@
             width: 36px;
             height: 36px;
             background: rgba(30, 107, 107, 0.15);
-            border: 1px solid rgba(30, 107, 107, 0.3);
+            border: 1px solid rgba(51, 102, 255, 0.3);
             border-radius: 8px;
             color: #7DC3C3;
             font-size: 1.2rem;
@@ -799,7 +799,7 @@
         }
 
         .year-selector button:hover {
-            background: rgba(30, 107, 107, 0.3);
+            background: rgba(51, 102, 255, 0.3);
         }
 
         .year-selector span {
@@ -828,15 +828,15 @@
 
         .month-grid button:hover {
             background: rgba(30, 107, 107, 0.15);
-            border-color: rgba(30, 107, 107, 0.3);
+            border-color: rgba(51, 102, 255, 0.3);
             color: #7DC3C3;
         }
 
         .month-grid button.active {
-            background: linear-gradient(135deg, #1E6B6B 0%, #C75D2D 100%);
+            background: linear-gradient(135deg, #3366FF 0%, #CC33FF 100%);
             border-color: transparent;
             color: white;
-            box-shadow: 0 4px 12px rgba(30, 107, 107, 0.3);
+            box-shadow: 0 4px 12px rgba(51, 102, 255, 0.3);
         }
 
         .month-grid button.current-month {
@@ -870,7 +870,7 @@
         .btn-export {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.2);
-            color: #3A9494;
+            color: #5C8AFF;
         }
 
         .btn-export:hover {
@@ -918,7 +918,7 @@
         .storage-dot {
             width: 8px;
             height: 8px;
-            background: #D4A843;
+            background: #FF9933;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -957,7 +957,7 @@
             position: absolute;
             inset: -1px;
             border-radius: 50px;
-            background: linear-gradient(135deg, rgba(30, 107, 107, 0.3), rgba(199, 93, 45, 0.2), rgba(212, 168, 67, 0.3));
+            background: linear-gradient(135deg, rgba(51, 102, 255, 0.3), rgba(204, 51, 255, 0.2), rgba(0, 217, 255, 0.3));
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: -1;
@@ -991,7 +991,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, rgba(30, 107, 107, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at center, rgba(51, 102, 255, 0.05) 0%, transparent 50%);
             animation: balanceGlow 12s ease-in-out infinite;
         }
 
@@ -1002,7 +1002,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #1E6B6B, #3A9494, #C75D2D, #D4A843);
+            background: linear-gradient(90deg, #3366FF, #5C8AFF, #CC33FF, #FF9933);
             border-radius: 28px 28px 0 0;
         }
 
@@ -1035,14 +1035,14 @@
         }
 
         .balance-hero .balance-amount.positive {
-            background: linear-gradient(135deg, #1E6B6B 0%, #3A9494 50%, #5BADAD 100%);
+            background: linear-gradient(135deg, #3366FF 0%, #5C8AFF 50%, #7DA8FF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .balance-hero .balance-amount.negative {
-            background: linear-gradient(135deg, #C75D2D 0%, #E8864A 50%, #F5A67A 100%);
+            background: linear-gradient(135deg, #CC33FF 0%, #00D9FF 50%, #33E5FF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1144,7 +1144,7 @@
         }
 
         .summary-card.income::before {
-            background: linear-gradient(90deg, #1E6B6B, #3A9494, #5BADAD);
+            background: linear-gradient(90deg, #3366FF, #5C8AFF, #7DA8FF);
         }
 
         .summary-card.income::after {
@@ -1152,7 +1152,7 @@
         }
 
         .summary-card.expense::before {
-            background: linear-gradient(90deg, #C75D2D, #E8864A, #F5A67A);
+            background: linear-gradient(90deg, #CC33FF, #00D9FF, #33E5FF);
         }
 
         .summary-card.expense::after {
@@ -1175,14 +1175,14 @@
         }
 
         .summary-card.income .amount {
-            background: linear-gradient(135deg, #1E6B6B, #3A9494);
+            background: linear-gradient(135deg, #3366FF, #5C8AFF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .summary-card.expense .amount {
-            background: linear-gradient(135deg, #C75D2D, #E8864A);
+            background: linear-gradient(135deg, #CC33FF, #00D9FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1214,7 +1214,7 @@
             background: rgba(168, 85, 247, 0.1);
             border: 1px solid rgba(168, 85, 247, 0.2);
             border-radius: 10px;
-            color: #D4A843;
+            color: #FF9933;
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
@@ -1290,13 +1290,13 @@
 
         .goal-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #D4A843, #E8C66A);
+            background: linear-gradient(90deg, #FF9933, #FFAA66);
             border-radius: 4px;
             transition: width 0.5s ease;
         }
 
         .goal-progress-fill.complete {
-            background: linear-gradient(90deg, #1E6B6B, #3A9494);
+            background: linear-gradient(90deg, #3366FF, #5C8AFF);
         }
 
         .goal-amounts {
@@ -1306,7 +1306,7 @@
         }
 
         .goal-current {
-            color: #D4A843;
+            color: #FF9933;
             font-weight: 600;
         }
 
@@ -1333,7 +1333,7 @@
         .goal-add-funds {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.2);
-            color: #3A9494;
+            color: #5C8AFF;
         }
 
         .goal-add-funds:hover {
@@ -1504,7 +1504,7 @@
 
         .icon-option.selected {
             background: rgba(168, 85, 247, 0.2);
-            border-color: #C75D2D;
+            border-color: #CC33FF;
         }
 
         .modal-actions {
@@ -1534,7 +1534,7 @@
         }
 
         .btn-save {
-            background: linear-gradient(135deg, #D4A843 0%, #C75D2D 100%);
+            background: linear-gradient(135deg, #FF9933 0%, #CC33FF 100%);
             border: none;
             color: white;
         }
@@ -1585,7 +1585,7 @@
 
         .recurring-item:hover,
         .loan-item:hover {
-            border-color: rgba(30, 107, 107, 0.3);
+            border-color: rgba(51, 102, 255, 0.3);
             background: rgba(0, 0, 0, 0.3);
         }
 
@@ -1625,7 +1625,7 @@
         }
 
         .recurring-amount.income {
-            color: #3A9494;
+            color: #5C8AFF;
         }
 
         .loan-details {
@@ -1641,7 +1641,7 @@
 
         .loan-rate {
             font-size: 0.8rem;
-            color: #C75D2D;
+            color: #CC33FF;
         }
 
         .loan-progress {
@@ -1655,7 +1655,7 @@
 
         .loan-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #1E6B6B, #3A9494);
+            background: linear-gradient(90deg, #3366FF, #5C8AFF);
             border-radius: 3px;
             transition: width 0.5s ease;
         }
@@ -1717,7 +1717,7 @@
 
         .status-badge.active {
             background: rgba(34, 197, 94, 0.2);
-            color: #3A9494;
+            color: #5C8AFF;
         }
 
         .status-badge.inactive {
@@ -1869,7 +1869,7 @@
         }
 
         .card.form-card.income-mode h2 {
-            color: #3A9494;
+            color: #5C8AFF;
         }
 
         /* Tabs */
@@ -1902,13 +1902,13 @@
         }
 
         .tab.active.expense-tab {
-            background: linear-gradient(135deg, #C75D2D 0%, #A04A22 100%);
+            background: linear-gradient(135deg, #CC33FF 0%, #A04A22 100%);
             color: white;
             box-shadow: 0 4px 15px rgba(199, 93, 45, 0.4);
         }
 
         .tab.active.income-tab {
-            background: linear-gradient(135deg, #1E6B6B 0%, #0F3D3D 100%);
+            background: linear-gradient(135deg, #3366FF 0%, #0F3D3D 100%);
             color: white;
             box-shadow: 0 4px 15px rgba(30, 107, 107, 0.4);
         }
@@ -2023,7 +2023,7 @@
         .submit-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #1E6B6B 0%, #3A9494 100%);
+            background: linear-gradient(135deg, #3366FF 0%, #5C8AFF 100%);
             color: white;
             border: none;
             border-radius: 14px;
@@ -2055,7 +2055,7 @@
             transform: translateY(-3px);
             box-shadow: 
                 0 12px 35px rgba(30, 107, 107, 0.4),
-                0 0 20px rgba(199, 93, 45, 0.2);
+                0 0 20px rgba(204, 51, 255, 0.2);
         }
 
         .submit-btn:disabled {
@@ -2064,7 +2064,7 @@
         }
 
         .expense-mode .submit-btn {
-            background: linear-gradient(135deg, #C75D2D 0%, #E8864A 100%);
+            background: linear-gradient(135deg, #CC33FF 0%, #00D9FF 100%);
         }
 
         .expense-mode .submit-btn:hover:not(:disabled) {
@@ -2074,7 +2074,7 @@
         }
 
         .income-mode .submit-btn {
-            background: linear-gradient(135deg, #1E6B6B 0%, #3A9494 100%);
+            background: linear-gradient(135deg, #3366FF 0%, #5C8AFF 100%);
         }
 
         .income-mode .submit-btn:hover:not(:disabled) {
@@ -2178,11 +2178,11 @@
         }
 
         .transaction.income {
-            border-left-color: #1E6B6B;
+            border-left-color: #3366FF;
         }
 
         .transaction.expense {
-            border-left-color: #C75D2D;
+            border-left-color: #CC33FF;
         }
 
         .transaction-info h4 {
@@ -2206,7 +2206,7 @@
         }
 
         .transaction-amount.positive {
-            color: #3A9494;
+            color: #5C8AFF;
         }
 
         .transaction-amount.negative {
@@ -2401,25 +2401,25 @@
 
         const categoryColors = {
             // English expense
-            'Groceries': '#C75D2D', 'Dining Out': '#1E6B6B', 'Gas & Fuel': '#D4A843',
-            'Transportation': '#E8864A', 'Shopping': '#84cc16', 'Entertainment': '#3A9494',
+            'Groceries': '#CC33FF', 'Dining Out': '#3366FF', 'Gas & Fuel': '#FF9933',
+            'Transportation': '#00D9FF', 'Shopping': '#84cc16', 'Entertainment': '#5C8AFF',
             'Bills & Utilities': '#0F3D3D', 'Rent & Housing': '#06b6d4', 'Health & Medical': '#0ea5e9',
-            'Education': '#3b82f6', 'Travel': '#1E6B6B', 'Personal Care': '#C75D2D',
-            'Subscriptions': '#d946ef', 'Insurance': '#E8864A', 'Kids & Family': '#f43f5e',
+            'Education': '#3b82f6', 'Travel': '#3366FF', 'Personal Care': '#CC33FF',
+            'Subscriptions': '#d946ef', 'Insurance': '#00D9FF', 'Kids & Family': '#f43f5e',
             'Pets': '#fb7185', 'Gifts': '#64748b', 'Loan Payment': '#475569', 'Other': '#94a3b8',
             // Hebrew expense
-            'מצרכים': '#C75D2D', 'מסעדות': '#1E6B6B', 'דלק': '#D4A843',
-            'תחבורה': '#E8864A', 'קניות': '#84cc16', 'בידור': '#3A9494',
+            'מצרכים': '#CC33FF', 'מסעדות': '#3366FF', 'דלק': '#FF9933',
+            'תחבורה': '#00D9FF', 'קניות': '#84cc16', 'בידור': '#5C8AFF',
             'חשבונות': '#0F3D3D', 'שכירות ודיור': '#06b6d4', 'בריאות': '#0ea5e9',
-            'חינוך': '#3b82f6', 'נסיעות': '#1E6B6B', 'טיפוח אישי': '#C75D2D',
-            'מנויים': '#d946ef', 'ביטוח': '#E8864A', 'ילדים ומשפחה': '#f43f5e',
+            'חינוך': '#3b82f6', 'נסיעות': '#3366FF', 'טיפוח אישי': '#CC33FF',
+            'מנויים': '#d946ef', 'ביטוח': '#00D9FF', 'ילדים ומשפחה': '#f43f5e',
             'חיות מחמד': '#fb7185', 'מתנות': '#64748b', 'תשלום הלוואה': '#475569', 'אחר': '#94a3b8',
             // English income
-            'Salary': '#1E6B6B', 'Freelance': '#3A9494', 'Business': '#0F3D3D',
-            'Investments': '#D4A843', 'Rental Income': '#0ea5e9', 'Refunds': '#3b82f6', 'Bonus': '#C75D2D',
+            'Salary': '#3366FF', 'Freelance': '#5C8AFF', 'Business': '#0F3D3D',
+            'Investments': '#FF9933', 'Rental Income': '#0ea5e9', 'Refunds': '#3b82f6', 'Bonus': '#CC33FF',
             // Hebrew income
-            'משכורת': '#1E6B6B', 'פרילנס': '#3A9494', 'עסק': '#0F3D3D',
-            'השקעות': '#D4A843', 'הכנסה משכירות': '#0ea5e9', 'החזרים': '#3b82f6', 'בונוס': '#C75D2D'
+            'משכורת': '#3366FF', 'פרילנס': '#5C8AFF', 'עסק': '#0F3D3D',
+            'השקעות': '#FF9933', 'הכנסה משכירות': '#0ea5e9', 'החזרים': '#3b82f6', 'בונוס': '#CC33FF'
         };
 
         const goalIcons = ['🎯', '✈️', '🏠', '🚗', '💻', '📱', '🎓', '💍', '🎁', '🏝️', '🎮', '📷'];
@@ -3734,7 +3734,7 @@
                             <h3>💰 Add Funds</h3>
                             <form onSubmit={handleAddFunds}>
                                 <div className="form-group">
-                                    <label>Goal: <span style={{ color: '#D4A843' }}>{selectedGoal?.name}</span></label>
+                                    <label>Goal: <span style={{ color: '#FF9933' }}>{selectedGoal?.name}</span></label>
                                 </div>
                                 <div className="form-group">
                                     <label>Amount to Add</label>
