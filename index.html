@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- TRACKER VERSION: 5.1.0 - Updated: 2026-02-06 -->
-<!-- Changes: Professional color scheme with refined blue/purple/cyan palette -->
+<!-- TRACKER VERSION: 5.2.0 - Updated: 2026-02-06 -->
+<!-- Changes: Clean aesthetic color scheme: blue base, green income, red expenses -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Tracker - Smart Expense Management</title>
     <meta name="description" content="Track your expenses, income, and savings goals with Tracker">
     
@@ -29,12 +29,12 @@
         }
 
         :root {
-            --primary-blue: #4A6CF7;
-            --primary-blue-light: #6B8DF8;
-            --primary-blue-dark: #2E4DB8;
-            --accent-cyan: #26C6DA;
-            --accent-purple: #9C27B0;
-            --accent-orange: #FF7043;
+            --primary-blue: #2563EB;
+            --primary-blue-light: #3B82F6;
+            --primary-blue-dark: #1E40AF;
+            --accent-income: #10B981;
+            --accent-expense: #EF4444;
+            --accent-neutral: #6B7280;
             --bg-dark: #0a0a0f;
             --bg-card: rgba(20, 20, 30, 0.8);
             --bg-card-solid: #14141e;
@@ -43,27 +43,38 @@
             --text-secondary: #b0b0b0;
             --text-muted: #737373;
             --border-color: rgba(255, 255, 255, 0.08);
-            --success: #26C6DA;
-            --danger: #ef4444;
-            --glow-blue: rgba(74, 108, 247, 0.25);
-            --glow-cyan: rgba(38, 198, 218, 0.2);
-            --glow-purple: rgba(156, 39, 176, 0.15);
+            --success: #10B981;
+            --danger: #EF4444;
+            --glow-blue: rgba(37, 99, 235, 0.2);
+            --glow-income: rgba(16, 185, 129, 0.15);
+            --glow-expense: rgba(239, 68, 68, 0.15);
         }
 
         html {
+            min-height: 100vh;
+            min-height: 100dvh;
             height: 100%;
             background: var(--bg-dark);
         }
 
         body {
+            background-attachment: fixed;
+            background-size: cover;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-dark);
             color: var(--text-primary);
-            min-height: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
             overflow-x: hidden;
             position: relative;
         }
 
+
+        #root {
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--bg-dark);
+        }
         /* Dynamic Wave Background - Cynet-inspired */
         .wave-background {
             position: fixed;
@@ -84,9 +95,9 @@
             width: 140%;
             height: 200%;
             background:
-                radial-gradient(ellipse at 80% 20%, rgba(74, 108, 247, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 60%, rgba(156, 39, 176, 0.06) 0%, transparent 40%),
-                radial-gradient(ellipse at 30% 80%, rgba(38, 198, 218, 0.05) 0%, transparent 35%);
+                radial-gradient(ellipse at 80% 20%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 60%, rgba(239, 68, 68, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 30% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 35%);
             animation: waveMove 20s ease-in-out infinite alternate;
         }
 
@@ -172,8 +183,8 @@
             pointer-events: none;
             z-index: 0;
             background: 
-                radial-gradient(ellipse at 50% -20%, rgba(74, 108, 247, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 100% 50%, rgba(156, 39, 176, 0.04) 0%, transparent 40%);
+                radial-gradient(ellipse at 50% -20%, rgba(37, 99, 235, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 50%, rgba(239, 68, 68, 0.04) 0%, transparent 40%);
         }
 
         /* Ensure content is above background */
@@ -295,7 +306,7 @@
         .auth-logo-full img, .auth-logo-full svg {
             max-width: 340px;
             height: auto;
-            filter: drop-shadow(0 8px 30px rgba(74, 108, 247, 0.3));
+            filter: drop-shadow(0 8px 30px rgba(37, 99, 235, 0.3));
         }
 
         .auth-subtitle {
@@ -423,7 +434,7 @@
             border: 1px solid rgba(34, 197, 94, 0.3);
             border-radius: 10px;
             padding: 12px 16px;
-            color: #6B8DF8;
+            color: #3B82F6;
             font-size: 0.9rem;
             text-align: center;
         }
@@ -456,7 +467,7 @@
         .header-logo img {
             max-width: 500px;
             height: auto;
-            filter: drop-shadow(0 8px 30px rgba(74, 108, 247, 0.3));
+            filter: drop-shadow(0 8px 30px rgba(37, 99, 235, 0.3));
         }
 
         /* Animated Logo */
@@ -483,7 +494,7 @@
 
         .logo-main:hover {
             transform: scale(1.02);
-            filter: drop-shadow(0 12px 40px rgba(74, 108, 247, 0.3));
+            filter: drop-shadow(0 12px 40px rgba(37, 99, 235, 0.3));
         }
 
         header p {
@@ -655,7 +666,7 @@
         .user-avatar-large {
             width: 52px;
             height: 52px;
-            background: linear-gradient(135deg, #4A6CF7 0%, #9C27B0 100%);
+            background: linear-gradient(135deg, #2563EB 0%, #EF4444 100%);
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -790,7 +801,7 @@
             width: 36px;
             height: 36px;
             background: rgba(30, 107, 107, 0.15);
-            border: 1px solid rgba(74, 108, 247, 0.3);
+            border: 1px solid rgba(37, 99, 235, 0.3);
             border-radius: 8px;
             color: #7DC3C3;
             font-size: 1.2rem;
@@ -799,7 +810,7 @@
         }
 
         .year-selector button:hover {
-            background: rgba(74, 108, 247, 0.3);
+            background: rgba(37, 99, 235, 0.3);
         }
 
         .year-selector span {
@@ -828,15 +839,15 @@
 
         .month-grid button:hover {
             background: rgba(30, 107, 107, 0.15);
-            border-color: rgba(74, 108, 247, 0.3);
+            border-color: rgba(37, 99, 235, 0.3);
             color: #7DC3C3;
         }
 
         .month-grid button.active {
-            background: linear-gradient(135deg, #4A6CF7 0%, #9C27B0 100%);
+            background: linear-gradient(135deg, #2563EB 0%, #EF4444 100%);
             border-color: transparent;
             color: white;
-            box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
         .month-grid button.current-month {
@@ -870,7 +881,7 @@
         .btn-export {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.2);
-            color: #6B8DF8;
+            color: #3B82F6;
         }
 
         .btn-export:hover {
@@ -918,7 +929,7 @@
         .storage-dot {
             width: 8px;
             height: 8px;
-            background: #FF7043;
+            background: #6B7280;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -957,7 +968,7 @@
             position: absolute;
             inset: -1px;
             border-radius: 50px;
-            background: linear-gradient(135deg, rgba(74, 108, 247, 0.3), rgba(156, 39, 176, 0.15), rgba(38, 198, 218, 0.2));
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(239, 68, 68, 0.15), rgba(16, 185, 129, 0.2));
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: -1;
@@ -991,7 +1002,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, rgba(74, 108, 247, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
             animation: balanceGlow 12s ease-in-out infinite;
         }
 
@@ -1002,7 +1013,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #4A6CF7, #6B8DF8, #9C27B0, #FF7043);
+            background: linear-gradient(90deg, #2563EB, #3B82F6, #EF4444, #6B7280);
             border-radius: 28px 28px 0 0;
         }
 
@@ -1035,14 +1046,14 @@
         }
 
         .balance-hero .balance-amount.positive {
-            background: linear-gradient(135deg, #4A6CF7 0%, #6B8DF8 50%, #8BA5FF 100%);
+            background: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .balance-hero .balance-amount.negative {
-            background: linear-gradient(135deg, #9C27B0 0%, #26C6DA 50%, #4DD0E1 100%);
+            background: linear-gradient(135deg, #EF4444 0%, #10B981 50%, #34D399 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1144,7 +1155,7 @@
         }
 
         .summary-card.income::before {
-            background: linear-gradient(90deg, #4A6CF7, #6B8DF8, #8BA5FF);
+            background: linear-gradient(90deg, #2563EB, #3B82F6, #60A5FA);
         }
 
         .summary-card.income::after {
@@ -1152,7 +1163,7 @@
         }
 
         .summary-card.expense::before {
-            background: linear-gradient(90deg, #9C27B0, #26C6DA, #4DD0E1);
+            background: linear-gradient(90deg, #EF4444, #10B981, #34D399);
         }
 
         .summary-card.expense::after {
@@ -1175,14 +1186,14 @@
         }
 
         .summary-card.income .amount {
-            background: linear-gradient(135deg, #4A6CF7, #6B8DF8);
+            background: linear-gradient(135deg, #2563EB, #3B82F6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .summary-card.expense .amount {
-            background: linear-gradient(135deg, #9C27B0, #26C6DA);
+            background: linear-gradient(135deg, #EF4444, #10B981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1214,7 +1225,7 @@
             background: rgba(168, 85, 247, 0.1);
             border: 1px solid rgba(168, 85, 247, 0.2);
             border-radius: 10px;
-            color: #FF7043;
+            color: #6B7280;
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
@@ -1290,13 +1301,13 @@
 
         .goal-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #FF7043, #FF8A65);
+            background: linear-gradient(90deg, #6B7280, #9CA3AF);
             border-radius: 4px;
             transition: width 0.5s ease;
         }
 
         .goal-progress-fill.complete {
-            background: linear-gradient(90deg, #4A6CF7, #6B8DF8);
+            background: linear-gradient(90deg, #2563EB, #3B82F6);
         }
 
         .goal-amounts {
@@ -1306,7 +1317,7 @@
         }
 
         .goal-current {
-            color: #FF7043;
+            color: #6B7280;
             font-weight: 600;
         }
 
@@ -1333,7 +1344,7 @@
         .goal-add-funds {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.2);
-            color: #6B8DF8;
+            color: #3B82F6;
         }
 
         .goal-add-funds:hover {
@@ -1504,7 +1515,7 @@
 
         .icon-option.selected {
             background: rgba(168, 85, 247, 0.2);
-            border-color: #9C27B0;
+            border-color: #EF4444;
         }
 
         .modal-actions {
@@ -1534,7 +1545,7 @@
         }
 
         .btn-save {
-            background: linear-gradient(135deg, #FF7043 0%, #9C27B0 100%);
+            background: linear-gradient(135deg, #6B7280 0%, #EF4444 100%);
             border: none;
             color: white;
         }
@@ -1585,7 +1596,7 @@
 
         .recurring-item:hover,
         .loan-item:hover {
-            border-color: rgba(74, 108, 247, 0.3);
+            border-color: rgba(37, 99, 235, 0.3);
             background: rgba(0, 0, 0, 0.3);
         }
 
@@ -1625,7 +1636,7 @@
         }
 
         .recurring-amount.income {
-            color: #6B8DF8;
+            color: #3B82F6;
         }
 
         .loan-details {
@@ -1641,7 +1652,7 @@
 
         .loan-rate {
             font-size: 0.8rem;
-            color: #9C27B0;
+            color: #EF4444;
         }
 
         .loan-progress {
@@ -1655,7 +1666,7 @@
 
         .loan-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, #4A6CF7, #6B8DF8);
+            background: linear-gradient(90deg, #2563EB, #3B82F6);
             border-radius: 3px;
             transition: width 0.5s ease;
         }
@@ -1717,7 +1728,7 @@
 
         .status-badge.active {
             background: rgba(34, 197, 94, 0.2);
-            color: #6B8DF8;
+            color: #3B82F6;
         }
 
         .status-badge.inactive {
@@ -1869,7 +1880,7 @@
         }
 
         .card.form-card.income-mode h2 {
-            color: #6B8DF8;
+            color: #3B82F6;
         }
 
         /* Tabs */
@@ -1902,13 +1913,13 @@
         }
 
         .tab.active.expense-tab {
-            background: linear-gradient(135deg, #9C27B0 0%, #A04A22 100%);
+            background: linear-gradient(135deg, #EF4444 0%, #A04A22 100%);
             color: white;
             box-shadow: 0 4px 15px rgba(199, 93, 45, 0.4);
         }
 
         .tab.active.income-tab {
-            background: linear-gradient(135deg, #4A6CF7 0%, #0F3D3D 100%);
+            background: linear-gradient(135deg, #2563EB 0%, #0F3D3D 100%);
             color: white;
             box-shadow: 0 4px 15px rgba(30, 107, 107, 0.4);
         }
@@ -2023,7 +2034,7 @@
         .submit-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, #4A6CF7 0%, #6B8DF8 100%);
+            background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
             color: white;
             border: none;
             border-radius: 14px;
@@ -2055,7 +2066,7 @@
             transform: translateY(-3px);
             box-shadow: 
                 0 12px 35px rgba(30, 107, 107, 0.4),
-                0 0 20px rgba(156, 39, 176, 0.15);
+                0 0 20px rgba(239, 68, 68, 0.15);
         }
 
         .submit-btn:disabled {
@@ -2064,7 +2075,7 @@
         }
 
         .expense-mode .submit-btn {
-            background: linear-gradient(135deg, #9C27B0 0%, #26C6DA 100%);
+            background: linear-gradient(135deg, #EF4444 0%, #10B981 100%);
         }
 
         .expense-mode .submit-btn:hover:not(:disabled) {
@@ -2074,7 +2085,7 @@
         }
 
         .income-mode .submit-btn {
-            background: linear-gradient(135deg, #4A6CF7 0%, #6B8DF8 100%);
+            background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
         }
 
         .income-mode .submit-btn:hover:not(:disabled) {
@@ -2178,11 +2189,11 @@
         }
 
         .transaction.income {
-            border-left-color: #4A6CF7;
+            border-left-color: #2563EB;
         }
 
         .transaction.expense {
-            border-left-color: #9C27B0;
+            border-left-color: #EF4444;
         }
 
         .transaction-info h4 {
@@ -2206,7 +2217,7 @@
         }
 
         .transaction-amount.positive {
-            color: #6B8DF8;
+            color: #3B82F6;
         }
 
         .transaction-amount.negative {
@@ -2401,25 +2412,25 @@
 
         const categoryColors = {
             // English expense
-            'Groceries': '#9C27B0', 'Dining Out': '#4A6CF7', 'Gas & Fuel': '#FF7043',
-            'Transportation': '#26C6DA', 'Shopping': '#84cc16', 'Entertainment': '#6B8DF8',
+            'Groceries': '#EF4444', 'Dining Out': '#2563EB', 'Gas & Fuel': '#6B7280',
+            'Transportation': '#10B981', 'Shopping': '#84cc16', 'Entertainment': '#3B82F6',
             'Bills & Utilities': '#0F3D3D', 'Rent & Housing': '#06b6d4', 'Health & Medical': '#0ea5e9',
-            'Education': '#3b82f6', 'Travel': '#4A6CF7', 'Personal Care': '#9C27B0',
-            'Subscriptions': '#d946ef', 'Insurance': '#26C6DA', 'Kids & Family': '#f43f5e',
+            'Education': '#3b82f6', 'Travel': '#2563EB', 'Personal Care': '#EF4444',
+            'Subscriptions': '#d946ef', 'Insurance': '#10B981', 'Kids & Family': '#f43f5e',
             'Pets': '#fb7185', 'Gifts': '#64748b', 'Loan Payment': '#475569', 'Other': '#94a3b8',
             // Hebrew expense
-            'מצרכים': '#9C27B0', 'מסעדות': '#4A6CF7', 'דלק': '#FF7043',
-            'תחבורה': '#26C6DA', 'קניות': '#84cc16', 'בידור': '#6B8DF8',
+            'מצרכים': '#EF4444', 'מסעדות': '#2563EB', 'דלק': '#6B7280',
+            'תחבורה': '#10B981', 'קניות': '#84cc16', 'בידור': '#3B82F6',
             'חשבונות': '#0F3D3D', 'שכירות ודיור': '#06b6d4', 'בריאות': '#0ea5e9',
-            'חינוך': '#3b82f6', 'נסיעות': '#4A6CF7', 'טיפוח אישי': '#9C27B0',
-            'מנויים': '#d946ef', 'ביטוח': '#26C6DA', 'ילדים ומשפחה': '#f43f5e',
+            'חינוך': '#3b82f6', 'נסיעות': '#2563EB', 'טיפוח אישי': '#EF4444',
+            'מנויים': '#d946ef', 'ביטוח': '#10B981', 'ילדים ומשפחה': '#f43f5e',
             'חיות מחמד': '#fb7185', 'מתנות': '#64748b', 'תשלום הלוואה': '#475569', 'אחר': '#94a3b8',
             // English income
-            'Salary': '#4A6CF7', 'Freelance': '#6B8DF8', 'Business': '#0F3D3D',
-            'Investments': '#FF7043', 'Rental Income': '#0ea5e9', 'Refunds': '#3b82f6', 'Bonus': '#9C27B0',
+            'Salary': '#2563EB', 'Freelance': '#3B82F6', 'Business': '#0F3D3D',
+            'Investments': '#6B7280', 'Rental Income': '#0ea5e9', 'Refunds': '#3b82f6', 'Bonus': '#EF4444',
             // Hebrew income
-            'משכורת': '#4A6CF7', 'פרילנס': '#6B8DF8', 'עסק': '#0F3D3D',
-            'השקעות': '#FF7043', 'הכנסה משכירות': '#0ea5e9', 'החזרים': '#3b82f6', 'בונוס': '#9C27B0'
+            'משכורת': '#2563EB', 'פרילנס': '#3B82F6', 'עסק': '#0F3D3D',
+            'השקעות': '#6B7280', 'הכנסה משכירות': '#0ea5e9', 'החזרים': '#3b82f6', 'בונוס': '#EF4444'
         };
 
         const goalIcons = ['🎯', '✈️', '🏠', '🚗', '💻', '📱', '🎓', '💍', '🎁', '🏝️', '🎮', '📷'];
@@ -3734,7 +3745,7 @@
                             <h3>💰 Add Funds</h3>
                             <form onSubmit={handleAddFunds}>
                                 <div className="form-group">
-                                    <label>Goal: <span style={{ color: '#FF7043' }}>{selectedGoal?.name}</span></label>
+                                    <label>Goal: <span style={{ color: '#6B7280' }}>{selectedGoal?.name}</span></label>
                                 </div>
                                 <div className="form-group">
                                     <label>Amount to Add</label>
@@ -4195,14 +4206,14 @@
             };
             
             const logoStyle = {
-                width: size === "large" ? '380px' : '260px',
+                width: size === "large" ? '520px' : '360px',
                 height: 'auto',
                 maxWidth: '85vw',
                 objectFit: 'contain',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                 filter: isHovered 
-                    ? 'drop-shadow(0 12px 40px rgba(74, 108, 247, 0.3)) drop-shadow(0 0 20px rgba(156, 39, 176, 0.15))'
-                    : 'drop-shadow(0 8px 30px rgba(74, 108, 247, 0.2))',
+                    ? 'drop-shadow(0 12px 40px rgba(37, 99, 235, 0.3)) drop-shadow(0 0 20px rgba(239, 68, 68, 0.15))'
+                    : 'drop-shadow(0 8px 30px rgba(37, 99, 235, 0.2))',
                 transform: isHovered ? 'scale(1.03)' : 'scale(1)'
             };
             
