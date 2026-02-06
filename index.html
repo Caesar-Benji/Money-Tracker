@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<!-- TRACKER VERSION: 5.2.0 - Updated: 2026-02-06 -->
-<!-- Changes: Clean aesthetic color scheme: blue base, green income, red expenses -->
+<!-- TRACKER VERSION: 6.0.0 - Updated: 2026-02-06 -->
+<!-- Changes: Professional redesign: Apple Fitness-style grid layout, bottom navigation -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Tracker - Smart Expense Management</title>
     <meta name="description" content="Track your expenses, income, and savings goals with Tracker">
     
@@ -261,6 +263,19 @@
         }
 
         @media (max-width: 768px) {
+            .dashboard-card, .stats-card, .balance-card {
+                padding: 16px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .balance-amount, .stat-amount {
+                font-size: 2.5rem !important;
+            }
+            
+            .balance-card h2, .stats-card h3 {
+                font-size: 0.75rem !important;
+                margin-bottom: 8px !important;
+            }
             [dir="rtl"] .settings-btn {
                 right: 15px;
                 left: auto;
@@ -357,7 +372,7 @@
 
         .auth-btn {
             padding: 16px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-cyan) 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-income) 100%);
             border: none;
             border-radius: 14px;
             color: white;
@@ -529,7 +544,7 @@
             position: absolute;
             inset: -2px;
             border-radius: 18px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan), var(--accent-purple));
+            background: linear-gradient(90deg, var(--accent-income), var(--primary-blue), var(--accent-expense));
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: -1;
@@ -666,7 +681,7 @@
         .user-avatar-large {
             width: 52px;
             height: 52px;
-            background: linear-gradient(135deg, #2563EB 0%, #EF4444 100%);
+            background: linear-gradient(135deg, #10B981 0%, #2563EB 100%);
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -844,7 +859,7 @@
         }
 
         .month-grid button.active {
-            background: linear-gradient(135deg, #2563EB 0%, #EF4444 100%);
+            background: linear-gradient(135deg, #10B981 0%, #2563EB 100%);
             border-color: transparent;
             color: white;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
@@ -1034,7 +1049,7 @@
         }
 
         .balance-hero .balance-amount {
-            font-size: 4.5rem;
+            font-size: 3rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--text-primary) 0%, rgba(255,255,255,0.8) 100%);
             -webkit-background-clip: text;
@@ -1053,7 +1068,7 @@
         }
 
         .balance-hero .balance-amount.negative {
-            background: linear-gradient(135deg, #EF4444 0%, #10B981 50%, #34D399 100%);
+            background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1077,6 +1092,19 @@
         }
 
         @media (max-width: 768px) {
+            .dashboard-card, .stats-card, .balance-card {
+                padding: 16px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .balance-amount, .stat-amount {
+                font-size: 2.5rem !important;
+            }
+            
+            .balance-card h2, .stats-card h3 {
+                font-size: 0.75rem !important;
+                margin-bottom: 8px !important;
+            }
             .summary-grid {
                 grid-template-columns: 1fr;
             }
@@ -1163,7 +1191,7 @@
         }
 
         .summary-card.expense::before {
-            background: linear-gradient(90deg, #EF4444, #10B981, #34D399);
+            background: linear-gradient(90deg, #10B981, #34D399);
         }
 
         .summary-card.expense::after {
@@ -1180,7 +1208,7 @@
         }
 
         .summary-card .amount {
-            font-size: 2.4rem;
+            font-size: 1.6rem;
             font-weight: 700;
             letter-spacing: -1px;
         }
@@ -1193,7 +1221,7 @@
         }
 
         .summary-card.expense .amount {
-            background: linear-gradient(135deg, #EF4444, #10B981);
+            background: linear-gradient(135deg, #10B981, #34D399);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1365,7 +1393,7 @@
 
         .no-goals {
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px 16px;
             color: #475569;
             background: rgba(255, 255, 255, 0.02);
             border-radius: 16px;
@@ -1375,7 +1403,7 @@
         .no-goals::before {
             content: '🎯';
             display: block;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             margin-bottom: 12px;
         }
 
@@ -1804,6 +1832,19 @@
         }
 
         @media (max-width: 768px) {
+            .dashboard-card, .stats-card, .balance-card {
+                padding: 16px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .balance-amount, .stat-amount {
+                font-size: 2.5rem !important;
+            }
+            
+            .balance-card h2, .stats-card h3 {
+                font-size: 0.75rem !important;
+                margin-bottom: 8px !important;
+            }
             .grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -2136,6 +2177,19 @@
         }
 
         @media (max-width: 768px) {
+            .dashboard-card, .stats-card, .balance-card {
+                padding: 16px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .balance-amount, .stat-amount {
+                font-size: 2.5rem !important;
+            }
+            
+            .balance-card h2, .stats-card h3 {
+                font-size: 0.75rem !important;
+                margin-bottom: 8px !important;
+            }
             .spending-stats {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 8px;
@@ -2297,12 +2351,12 @@
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 50px 20px;
+            padding: 24px 16px;
             color: #475569;
         }
 
         .empty-state-icon {
-            font-size: 3rem;
+            font-size: 2rem;
             margin-bottom: 12px;
         }
 
@@ -2320,7 +2374,7 @@
         /* Loading */
         .loading {
             text-align: center;
-            padding: 50px;
+            padding: 24px;
             color: #64748b;
         }
 
@@ -2354,6 +2408,213 @@
             border-width: 4px;
         }
     </style>
+
+        /* ===================== */
+        /* Professional Grid Layout */
+        /* ===================== */
+        .dashboard-content {
+            max-width: 100%;
+            padding: 16px;
+            padding-bottom: 80px; /* Space for bottom nav */
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 4px;
+        }
+
+        .dashboard-title {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .dashboard-date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* Featured Balance Card */
+        .featured-card {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 28px 24px;
+            margin-bottom: 16px;
+            border-top: 3px solid;
+            border-image: linear-gradient(90deg, var(--accent-income), var(--primary-blue)) 1;
+        }
+
+        .featured-card h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .featured-balance {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 8px 0;
+            background: linear-gradient(135deg, var(--text-primary), rgba(255,255,255,0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .featured-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Stats Grid - 2x2 Layout */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px 16px;
+            border-top: 2px solid rgba(255, 255, 255, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:active {
+            transform: scale(0.98);
+        }
+
+        .stat-card.income {
+            border-top-color: var(--accent-income);
+        }
+
+        .stat-card.expense {
+            border-top-color: var(--accent-expense);
+        }
+
+        .stat-card h3 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .stat-card .amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-card .amount.income-text {
+            color: var(--accent-income);
+        }
+
+        .stat-card .amount.expense-text {
+            color: var(--accent-expense);
+        }
+
+        .stat-card .subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Full Width Card */
+        .full-width-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-top: 2px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .full-width-card h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(20, 20, 30, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+            z-index: 1000;
+        }
+
+        .bottom-nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 8px;
+            text-decoration: none;
+        }
+
+        .bottom-nav-item.active {
+            color: var(--primary-blue);
+        }
+
+        .bottom-nav-item.add-button {
+            color: var(--accent-income);
+        }
+
+        .bottom-nav-item svg, .bottom-nav-item .nav-icon {
+            font-size: 1.5rem;
+        }
+
+        .bottom-nav-item span {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .featured-balance {
+                font-size: 2.8rem;
+            }
+            
+            .stat-card .amount {
+                font-size: 1.5rem;
+            }
+            
+            .dashboard-content {
+                padding: 12px;
+                padding-bottom: 80px;
+            }
+        }
 </head>
 <body>
     <!-- Dynamic Wave Background -->
@@ -2911,6 +3172,7 @@
             const [viewDate, setViewDate] = React.useState(new Date());
             const [loading, setLoading] = React.useState(true);
             const [sidebarOpen, setSidebarOpen] = React.useState(false);
+            const [activeView, setActiveView] = React.useState('summary');
             const [transactionType, setTransactionType] = React.useState('expense');
             const [searchTerm, setSearchTerm] = React.useState('');
             const [filterCategory, setFilterCategory] = React.useState('');
@@ -3564,8 +3826,6 @@
 
             return (
                 <div className="app-container" dir={language === 'he' ? 'rtl' : 'ltr'}>
-                    {/* Settings Button */}
-                    <button className="settings-btn" onClick={() => setSidebarOpen(true)}>⚙️</button>
 
                     {/* Sidebar Overlay */}
                     <div className={`sidebar-overlay ${sidebarOpen ? 'active' : ''}`} onClick={() => setSidebarOpen(false)} />
@@ -3767,87 +4027,90 @@
                         </div>
                     </div>
 
-                    <div className="container">
-                        <header>
-                            <div className="header-logo">
-                                <AnimatedLogo size="large" />
+                    {/* Main Content - Conditional Views */}
+                    {activeView === 'summary' && (
+                        <div className="dashboard-content">
+                            {/* Dashboard Header */}
+                            <div className="dashboard-header">
+                                <div>
+                                    <h1 style={{margin: 0, fontSize: '2rem', fontWeight: '700'}}>Tracker</h1>
+                                    <p style={{margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem'}}>{getMonthYear(viewDate)}</p>
+                                </div>
+                                <div className="user-avatar" style={{width: '40px', height: '40px', borderRadius: '50%', background: 'var(--primary-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 'bold'}}>
+                                    {userName ? userName[0].toUpperCase() : user.email[0].toUpperCase()}
+                                </div>
                             </div>
-                            <p>{t('smartExpense')}</p>
-                        </header>
 
-                        {/* Month Display */}
-                        <div className="month-display">
-                            <span>{getMonthYear(viewDate)}</span>
-                        </div>
+                            {/* Featured Balance Card */}
+                            <div className="featured-card">
+                                <h3 style={{margin: '0 0 8px 0', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)'}}>{t('currentBalance')}</h3>
+                                <div className={`balance-amount ${balance > 0 ? 'positive' : balance < 0 ? 'negative' : ''}`} style={{fontSize: '2.5rem', fontWeight: '700', margin: '8px 0'}}>
+                                    {formatCurrency(balance, currency)}
+                                </div>
+                                <p style={{margin: '4px 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)'}}>{t('incomeMinusExpenses')}</p>
+                            </div>
 
-                        {/* Balance Hero */}
-                        <div className="balance-hero">
-                            <h2>{t('currentBalance')}</h2>
-                            <div className={`balance-amount ${balance > 0 ? 'positive' : balance < 0 ? 'negative' : ''}`}>
-                                {formatCurrency(balance, currency)}
+                            {/* Stats Grid - 2x2 */}
+                            <div className="stats-grid">
+                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-income)'}}>
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('totalIncome')}</div>
+                                    <div style={{fontSize: '1.8rem', fontWeight: '700', color: 'var(--accent-income)'}}>{formatCurrency(income, currency)}</div>
+                                </div>
+                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-expense)'}}>
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('totalExpenses')}</div>
+                                    <div style={{fontSize: '1.8rem', fontWeight: '700', color: 'var(--accent-expense)'}}>{formatCurrency(expenses, currency)}</div>
+                                </div>
+                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--primary-blue)'}}>
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('savingsGoals')}</div>
+                                    <div style={{fontSize: '1.4rem', fontWeight: '700'}}>{goals.length} {goals.length === 1 ? 'Goal' : 'Goals'}</div>
+                                </div>
+                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-neutral)'}}>
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('topCategory')}</div>
+                                    <div style={{fontSize: '1.4rem', fontWeight: '700'}}>{topCategory ? topCategory[0] : '-'}</div>
+                                </div>
                             </div>
-                            <p className="balance-subtitle">{t('incomeMinusExpenses')}</p>
-                        </div>
 
-                        {/* Summary Grid */}
-                        <div className="summary-grid">
-                            <div className="summary-card income">
-                                <h3>{t('totalIncome')}</h3>
-                                <div className="amount">{formatCurrency(income, currency)}</div>
-                            </div>
-                            <div className="summary-card expense">
-                                <h3>{t('totalExpenses')}</h3>
-                                <div className="amount">{formatCurrency(expenses, currency)}</div>
-                            </div>
-                        </div>
-
-                        {/* Goals Section */}
-                        <div className="goals-section">
-                            <div className="goals-header">
-                                <h2><span className="icon">🎯</span> {t('savingsGoals')}</h2>
-                                <button className="add-goal-btn" onClick={() => setGoalModalOpen(true)}>{t('addGoal')}</button>
-                            </div>
-                            <div className="goals-grid">
-                                {goals.length === 0 ? (
-                                    <div className="no-goals">{t('startTracking')}</div>
-                                ) : (
-                                    goals.map(goal => {
-                                        const progress = Math.min((parseFloat(goal.current) / parseFloat(goal.target)) * 100, 100);
-                                        const isComplete = progress >= 100;
-                                        return (
-                                            <div key={goal.id} className="goal-card">
-                                                <div className="goal-header">
-                                                    <div className="goal-info">
-                                                        <h4>{goal.name}</h4>
-                                                        <span>{isComplete ? '✓' : `${progress.toFixed(0)}%`}</span>
-                                                    </div>
-                                                    <div className="goal-icon">{goal.icon}</div>
+                            {/* Recent Transactions - Full Width */}
+                            <div className="full-width-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', marginBottom: '16px'}}>
+                                <h3 style={{margin: '0 0 16px 0', fontSize: '1.1rem', fontWeight: '700'}}><span className="icon">📝</span> {t('transactions')}</h3>
+                                <div className="transactions-list" style={{maxHeight: '300px', overflowY: 'auto'}}>
+                                    {filteredTransactions.length === 0 ? (
+                                        <div className="empty-state">
+                                            <div className="empty-state-icon">📭</div>
+                                            {t('noTransactions')}
+                                        </div>
+                                    ) : (
+                                        filteredTransactions.slice(0, 5).map(tx => (
+                                            <div key={tx.id} className={`transaction ${tx.type}`}>
+                                                <div className="transaction-info">
+                                                    <h4>{tx.category}</h4>
+                                                    <span>{formatDate(tx.date)}{tx.description ? ` • ${tx.description}` : ''}</span>
                                                 </div>
-                                                <div className="goal-progress">
-                                                    <div className="goal-progress-bar">
-                                                        <div className={`goal-progress-fill ${isComplete ? 'complete' : ''}`} style={{ width: `${progress}%` }} />
-                                                    </div>
-                                                    <div className="goal-amounts">
-                                                        <span className="goal-current">{formatCurrency(goal.current, currency)}</span>
-                                                        <span className="goal-target">of {formatCurrency(goal.target, currency)}</span>
-                                                    </div>
-                                                </div>
-                                                <div className="goal-actions">
-                                                    <button className="goal-add-funds" onClick={() => { setSelectedGoal(goal); setAddFundsModalOpen(true); }}>+ Add Funds</button>
-                                                    <button className="goal-delete" onClick={() => handleDeleteGoal(goal.id)}>×</button>
+                                                <div className={`transaction-amount ${tx.type === 'income' ? 'positive' : 'negative'}`}>
+                                                    {tx.type === 'income' ? '+' : '-'}{formatCurrency(tx.amount, currency)}
+                                                    <button className="delete-btn" onClick={() => openDeleteModal('transaction', tx.id, tx.category)}>×</button>
                                                 </div>
                                             </div>
-                                        );
-                                    })
+                                        ))
+                                    )}
+                                </div>
+                                {filteredTransactions.length > 5 && (
+                                    <div style={{textAlign: 'center', marginTop: '12px', fontSize: '0.9rem', color: 'var(--text-muted)'}}>
+                                        Showing 5 of {filteredTransactions.length} transactions
+                                    </div>
                                 )}
                             </div>
                         </div>
+                    )}
 
-                        {/* Main Grid */}
-                        <div className="grid">
-                            {/* Add Transaction Card */}
-                            <div className={`card form-card ${transactionType}-mode`}>
-                                <h2><span className="icon">➕</span> {t('addTransaction')}</h2>
+                    {/* Add Transaction View */}
+                    {activeView === 'add' && (
+                        <div className="dashboard-content">
+                            <div className="dashboard-header" style={{marginBottom: '24px'}}>
+                                <h1 style={{margin: 0, fontSize: '2rem', fontWeight: '700'}}>{t('addTransaction')}</h1>
+                            </div>
+
+                            <div className={`card form-card ${transactionType}-mode`} style={{marginBottom: '24px'}}>
                                 <div className="tabs">
                                     <div
                                         className={`tab expense-tab ${transactionType === 'expense' ? 'active' : ''}`}
@@ -3919,272 +4182,88 @@
                                 </form>
                             </div>
 
-                            {/* Category Chart */}
-                            <div className="card">
-                                <h2><span className="icon">📊</span> {t('expensesByCategory')}</h2>
-                                <div className="chart-container">
-                                    <canvas ref={categoryChartRef}></canvas>
+                            {/* Quick Stats in Add View */}
+                            <div className="stats-grid">
+                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-income)'}}>
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('totalIncome')}</div>
+                                    <div style={{fontSize: '1.8rem', fontWeight: '700', color: 'var(--accent-income)'}}>{formatCurrency(income, currency)}</div>
+                                </div>
+                                <div className="stat-card" style={{background: 'var(--bg-card)', borderRadius: '16px', padding: '20px', borderTop: '3px solid var(--accent-expense)'}}>
+                                    <div style={{fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px'}}>{t('totalExpenses')}</div>
+                                    <div style={{fontSize: '1.8rem', fontWeight: '700', color: 'var(--accent-expense)'}}>{formatCurrency(expenses, currency)}</div>
                                 </div>
                             </div>
                         </div>
+                    )}
 
-                        <div className="grid">
-                            {/* Trend Chart */}
-                            <div className="card">
-                                <h2><span className="icon">📈</span> {t('incomeVsExpenses')}</h2>
-                                <div className="chart-container">
-                                    <canvas ref={trendChartRef}></canvas>
-                                </div>
-                                
-                                {/* Spending Statistics */}
-                                <div className="spending-stats">
-                                    <div className="stat-item">
-                                        <div className="stat-value">{formatCurrency(avgPerDay, currency)}</div>
-                                        <div className="stat-label">{t('avgPerDay')}</div>
-                                    </div>
-                                    <div className="stat-item highlight">
-                                        <div className="stat-value">{topCategory ? topCategory[0] : '-'}</div>
-                                        <div className="stat-label">{t('topCategory')}</div>
-                                    </div>
-                                    <div className="stat-item">
-                                        <div className="stat-value">{formatCurrency(foodSpending, currency)}</div>
-                                        <div className="stat-label">{t('foodSpending')}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Transactions List */}
-                            <div className="card">
-                                <h2><span className="icon">📝</span> {t('transactions')}</h2>
-                                <div className="search-box">
-                                    <input
-                                        type="text"
-                                        placeholder={t('searchTransactions')}
-                                        value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
-                                    />
-                                </div>
-                                <div className="filter-row">
-                                    <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
-                                        <option value="">{t('allCategories')}</option>
-                                        {[...categories.expense, ...categories.income].map(cat => (
-                                            <option key={cat} value={cat}>{cat}</option>
-                                        ))}
-                                    </select>
-                                    <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
-                                        <option value="">{t('allTypes')}</option>
-                                        <option value="income">{t('income')}</option>
-                                        <option value="expense">{t('expense')}</option>
-                                    </select>
-                                </div>
-                                <div className="transactions-list">
-                                    {filteredTransactions.length === 0 ? (
-                                        <div className="empty-state">
-                                            <div className="empty-state-icon">📭</div>
-                                            {t('noTransactions')}
-                                        </div>
-                                    ) : (
-                                        filteredTransactions.map(tx => (
-                                            <div key={tx.id} className={`transaction ${tx.type}`}>
-                                                <div className="transaction-info">
-                                                    <h4>{tx.category}</h4>
-                                                    <span>{formatDate(tx.date)}{tx.description ? ` • ${tx.description}` : ''}</span>
-                                                </div>
-                                                <div className={`transaction-amount ${tx.type === 'income' ? 'positive' : 'negative'}`}>
-                                                    {tx.type === 'income' ? '+' : '-'}{formatCurrency(tx.amount, currency)}
-                                                    <button className="delete-btn" onClick={() => openDeleteModal('transaction', tx.id, tx.category)}>×</button>
-                                                </div>
-                                            </div>
-                                        ))
-                                    )}
-                                </div>
-                                <div className="stats-row">
-                                    <span>{transactions.length} {t('transactions').toLowerCase()}</span>
-                                    <span>☁️ {t('cloudSync')}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Recurring Transactions Section */}
-                        <div className="card" style={{marginBottom: '24px'}}>
-                            <div className="section-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px'}}>
-                                <h2><span className="icon">🔄</span> {t('recurringTransactions')}</h2>
-                                <button className="add-goal-btn" onClick={() => openRecurringModal()}>{t('addRecurring')}</button>
-                            </div>
-                            {recurringTransactions.length === 0 ? (
-                                <div className="empty-state">
-                                    <p>{t('noRecurring')}</p>
-                                    <p style={{fontSize: '0.8rem', marginTop: '8px'}}>{t('recurringDesc')}</p>
-                                </div>
-                            ) : (
-                                recurringTransactions.map(rec => (
-                                    <div key={rec.id} className="recurring-item">
-                                        <div className="recurring-info">
-                                            <h4>
-                                                {rec.category}
-                                                <span className={`status-badge ${rec.is_active ? 'active' : 'inactive'}`}>
-                                                    {rec.is_active ? t('active') : t('inactive')}
-                                                </span>
-                                            </h4>
-                                            <p>{t('dayOfMonth')}: {rec.day_of_month} {rec.description ? `• ${rec.description}` : ''}</p>
-                                        </div>
-                                        <div className={`recurring-amount ${rec.type}`}>
-                                            {rec.type === 'income' ? '+' : '-'}{formatCurrency(rec.amount, currency)}
-                                        </div>
-                                        <div className="item-actions">
-                                            <button className="btn-edit-item" onClick={() => openRecurringModal(rec)}>✏️</button>
-                                            <button className="btn-delete-item" onClick={() => openDeleteModal('recurring', rec.id, rec.category)}>🗑️</button>
-                                        </div>
-                                    </div>
-                                ))
-                            )}
-                        </div>
-
-                        {/* Loans Section */}
-                        <div className="card" style={{marginBottom: '24px'}}>
-                            <div className="section-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px'}}>
-                                <h2><span className="icon">🏦</span> {t('loans')}</h2>
-                                <button className="add-goal-btn" onClick={() => openLoanModal()}>{t('addLoan')}</button>
-                            </div>
-                            {loans.length === 0 ? (
-                                <div className="empty-state">
-                                    <p>{t('noLoans')}</p>
-                                    <p style={{fontSize: '0.8rem', marginTop: '8px'}}>{t('loansDesc')}</p>
-                                </div>
-                            ) : (
-                                loans.map(loan => {
-                                    const { totalAmount, progress } = getLoanProgress(loan);
-                                    return (
-                                        <div key={loan.id} className="loan-item">
-                                            <div className="loan-info" style={{flex: 1}}>
-                                                <h4>{loan.name}</h4>
-                                                <p>{t('monthlyPayment')}: {formatCurrency(loan.monthly_payment, currency)}</p>
-                                                <p>{loan.interest_rate}% • {loan.term_months} {t('months')[0]}</p>
-                                            </div>
-                                            <div className="loan-details">
-                                                <div className="loan-amount">{formatCurrency(loan.principal, currency)}</div>
-                                            </div>
-                                            <div className="item-actions">
-                                                <button className="btn-edit-item" onClick={() => openLoanModal(loan)}>✏️</button>
-                                                <button className="btn-delete-item" onClick={() => openDeleteModal('loan', loan.id, loan.name)}>🗑️</button>
-                                            </div>
-                                            <div className="loan-progress" style={{marginTop: '12px'}}>
-                                                <div className="loan-progress-bar" style={{width: `${progress}%`}}></div>
-                                            </div>
-                                            <div style={{display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: '#64748b', marginTop: '6px'}}>
-                                                <span>{formatCurrency(loan.total_paid, currency)} {t('paidOf')} {formatCurrency(totalAmount, currency)}</span>
-                                                <span>{progress.toFixed(0)}%</span>
-                                            </div>
-                                        </div>
-                                    );
-                                })
-                            )}
-                        </div>
-
-                        {/* Delete Confirmation Modal */}
-                        <div className={`modal-overlay confirm-delete-modal ${deleteModalOpen ? 'active' : ''}`} onClick={() => setDeleteModalOpen(false)}>
-                            <div className="modal" onClick={(e) => e.stopPropagation()}>
-                                <h3>⚠️ {t('confirmDelete')}</h3>
-                                <p className="modal-message">
-                                    {deleteTarget.type === 'transaction' && t('deleteTransactionMsg')}
-                                    {deleteTarget.type === 'recurring' && t('deleteRecurringMsg')}
-                                    {deleteTarget.type === 'loan' && t('deleteLoanMsg')}
-                                </p>
-                                <div className="modal-actions">
-                                    <button className="btn-cancel" onClick={() => setDeleteModalOpen(false)}>{t('cancel')}</button>
-                                    <button className="btn-delete" onClick={handleConfirmDelete} disabled={deleting}>
-                                        {deleting ? t('deleting') : t('delete')}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Recurring Transaction Modal */}
-                        <div className={`modal-overlay ${recurringModalOpen ? 'active' : ''}`} onClick={() => setRecurringModalOpen(false)}>
-                            <div className="modal" onClick={(e) => e.stopPropagation()}>
-                                <h3>🔄 {selectedRecurring ? t('editRecurring') : t('newRecurring')}</h3>
-                                <form onSubmit={handleSaveRecurring}>
-                                    <div className="form-group">
-                                        <label>{t('type')}</label>
-                                        <select value={recurringForm.type} onChange={(e) => setRecurringForm({...recurringForm, type: e.target.value, category: ''})}>
-                                            <option value="expense">{t('expense')}</option>
-                                            <option value="income">{t('income')}</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('amount')}</label>
-                                        <div className="input-with-prefix">
-                                            <span className="currency-prefix">{currencySymbols[currency]}</span>
-                                            <input type="number" step="0.01" min="0" value={recurringForm.amount} onChange={(e) => setRecurringForm({...recurringForm, amount: e.target.value})} required placeholder="0.00" />
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('category')}</label>
-                                        <select value={recurringForm.category} onChange={(e) => setRecurringForm({...recurringForm, category: e.target.value})} required>
-                                            <option value="">{t('selectCategory')}</option>
-                                            {categories[recurringForm.type].map(cat => (
-                                                <option key={cat} value={cat}>{cat}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('dayOfMonth')}</label>
-                                        <input type="number" min="1" max="28" value={recurringForm.day_of_month} onChange={(e) => setRecurringForm({...recurringForm, day_of_month: e.target.value})} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('description')}</label>
-                                        <input type="text" value={recurringForm.description} onChange={(e) => setRecurringForm({...recurringForm, description: e.target.value})} placeholder={t('optional')} />
-                                    </div>
-                                    <div className="modal-actions">
-                                        <button type="button" className="btn-cancel" onClick={() => setRecurringModalOpen(false)}>{t('cancel')}</button>
-                                        <button type="submit" className="btn-save" disabled={submitting}>{submitting ? t('saving') : t('save')}</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        {/* Loan Modal */}
-                        <div className={`modal-overlay ${loanModalOpen ? 'active' : ''}`} onClick={() => setLoanModalOpen(false)}>
-                            <div className="modal" onClick={(e) => e.stopPropagation()}>
-                                <h3>🏦 {selectedLoan ? t('editLoan') : t('newLoan')}</h3>
-                                <form onSubmit={handleSaveLoan}>
-                                    <div className="form-group">
-                                        <label>{t('loanName')}</label>
-                                        <input type="text" value={loanForm.name} onChange={(e) => setLoanForm({...loanForm, name: e.target.value})} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('principal')}</label>
-                                        <div className="input-with-prefix">
-                                            <span className="currency-prefix">{currencySymbols[currency]}</span>
-                                            <input type="number" step="0.01" min="0" value={loanForm.principal} onChange={(e) => setLoanForm({...loanForm, principal: e.target.value})} required placeholder="0.00" />
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('interestRate')}</label>
-                                        <input type="number" step="0.01" min="0" max="100" value={loanForm.interest_rate} onChange={(e) => setLoanForm({...loanForm, interest_rate: e.target.value})} required placeholder="%" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('termMonths')}</label>
-                                        <input type="number" min="1" value={loanForm.term_months} onChange={(e) => setLoanForm({...loanForm, term_months: e.target.value})} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('monthlyPayment')}</label>
-                                        <div className="input-with-prefix">
-                                            <span className="currency-prefix">{currencySymbols[currency]}</span>
-                                            <input type="number" step="0.01" min="0" value={loanForm.monthly_payment} onChange={(e) => setLoanForm({...loanForm, monthly_payment: e.target.value})} required placeholder="0.00" />
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>{t('startDate')}</label>
-                                        <input type="date" value={loanForm.start_date} onChange={(e) => setLoanForm({...loanForm, start_date: e.target.value})} required />
-                                    </div>
-                                    <div className="modal-actions">
-                                        <button type="button" className="btn-cancel" onClick={() => setLoanModalOpen(false)}>{t('cancel')}</button>
-                                        <button type="submit" className="btn-save" disabled={submitting}>{submitting ? t('saving') : t('save')}</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                    {/* Bottom Navigation */}
+                    <div className="bottom-nav">
+                        <button 
+                            className={`nav-item ${activeView === 'summary' ? 'active' : ''}`}
+                            onClick={() => setActiveView('summary')}
+                            style={{
+                                flex: 1,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '4px',
+                                background: 'none',
+                                border: 'none',
+                                color: activeView === 'summary' ? 'var(--primary-blue)' : 'var(--text-muted)',
+                                cursor: 'pointer',
+                                padding: '8px',
+                                fontSize: '0.75rem',
+                                fontWeight: activeView === 'summary' ? '600' : '500',
+                                transition: 'color 0.2s'
+                            }}
+                        >
+                            <span style={{fontSize: '1.5rem'}}>📊</span>
+                            <span>Summary</span>
+                        </button>
+                        <button 
+                            className={`nav-item ${activeView === 'add' ? 'active' : ''}`}
+                            onClick={() => setActiveView('add')}
+                            style={{
+                                flex: 1,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '4px',
+                                background: 'none',
+                                border: 'none',
+                                color: activeView === 'add' ? 'var(--primary-blue)' : 'var(--text-muted)',
+                                cursor: 'pointer',
+                                padding: '8px',
+                                fontSize: '0.75rem',
+                                fontWeight: activeView === 'add' ? '600' : '500',
+                                transition: 'color 0.2s'
+                            }}
+                        >
+                            <span style={{fontSize: '1.5rem'}}>➕</span>
+                            <span>Add</span>
+                        </button>
+                        <button 
+                            className={`nav-item ${sidebarOpen ? 'active' : ''}`}
+                            onClick={() => setSidebarOpen(true)}
+                            style={{
+                                flex: 1,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '4px',
+                                background: 'none',
+                                border: 'none',
+                                color: sidebarOpen ? 'var(--primary-blue)' : 'var(--text-muted)',
+                                cursor: 'pointer',
+                                padding: '8px',
+                                fontSize: '0.75rem',
+                                fontWeight: sidebarOpen ? '600' : '500',
+                                transition: 'color 0.2s'
+                            }}
+                        >
+                            <span style={{fontSize: '1.5rem'}}>⚙️</span>
+                            <span>Settings</span>
+                        </button>
                     </div>
                 </div>
             );
