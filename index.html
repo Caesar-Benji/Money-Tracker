@@ -561,13 +561,17 @@
 
         .top-navbar-logo {
             margin-left: 0;
-            margin-right: 8px;
+            margin-right: 12px;
+            margin-top: -10px;
+            margin-bottom: -10px;
             flex-shrink: 0;
-            width: 40px;
-            height: 40px;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 10;
         }
 
         .top-navbar-logo > * {
@@ -1464,9 +1468,11 @@
 
             .top-navbar-logo {
                 margin-left: 0;
-                margin-right: 6px;
-                width: 36px;
-                height: 36px;
+                margin-right: 8px;
+                margin-top: -8px;
+                margin-bottom: -8px;
+                width: 64px;
+                height: 64px;
             }
 
             .top-navbar-separator {
@@ -5134,7 +5140,7 @@
             };
 
             const getWidth = () => {
-                if (size === "navbar") return '40px';
+                if (size === "navbar") return '80px';
                 if (size === "large") return '520px';
                 return '360px';
             };
@@ -5142,11 +5148,11 @@
             const logoStyle = {
                 width: getWidth(),
                 height: 'auto',
-                maxWidth: isNavbar ? '40px' : '85vw',
+                maxWidth: isNavbar ? '80px' : '85vw',
                 objectFit: 'contain',
                 transition: isNavbar ? 'none' : 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                 filter: isNavbar
-                    ? 'none'
+                    ? 'drop-shadow(0 4px 12px rgba(37, 99, 235, 0.25))'
                     : (isHovered
                         ? 'drop-shadow(0 12px 40px rgba(37, 99, 235, 0.3)) drop-shadow(0 0 20px rgba(239, 68, 68, 0.15))'
                         : 'drop-shadow(0 8px 30px rgba(37, 99, 235, 0.2))'),
