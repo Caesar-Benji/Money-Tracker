@@ -555,6 +555,8 @@
             display: flex;
             align-items: center;
             gap: 0;
+            flex-shrink: 0;
+            width: auto;
         }
 
         .top-navbar-logo {
@@ -563,7 +565,13 @@
             margin-left: 0;
             margin-right: 12px;
             flex-shrink: 0;
-            overflow: visible;
+            width: 55px;
+            overflow: hidden;
+        }
+
+        .top-navbar-logo > * {
+            width: 100%;
+            height: auto;
         }
 
         .top-navbar-separator {
@@ -1450,13 +1458,15 @@
 
             .top-navbar-left {
                 gap: 0;
+                width: auto;
             }
 
             .top-navbar-logo {
                 transform: scale(0.2);
                 margin-left: 0;
                 margin-right: 10px;
-                overflow: visible;
+                width: 50px;
+                overflow: hidden;
             }
 
             .top-navbar-separator {
