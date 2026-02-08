@@ -554,33 +554,38 @@
         .top-navbar-left {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 0;
         }
 
         .top-navbar-logo {
-            transform: scale(0.25);
+            transform: scale(0.2);
             transform-origin: left center;
-            margin-left: -30px;
-            margin-right: -12px;
+            margin-left: -34px;
+            margin-right: -68px;
+            max-width: 50px;
+            flex-shrink: 0;
         }
 
         .top-navbar-separator {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: var(--text-muted);
-            opacity: 0.3;
-            margin: 0 2px;
+            opacity: 0.4;
+            margin: 0 12px;
+            font-weight: 200;
         }
 
         .top-navbar-username {
-            font-size: 0.95rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
             color: var(--text-primary);
+            white-space: nowrap;
         }
 
         .top-navbar-date {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            white-space: nowrap;
         }
 
         .top-navbar-right {
@@ -1444,26 +1449,27 @@
             }
 
             .top-navbar-left {
-                gap: 6px;
+                gap: 0;
             }
 
             .top-navbar-logo {
-                transform: scale(0.2);
-                margin-left: -35px;
-                margin-right: -10px;
+                transform: scale(0.18);
+                margin-left: -38px;
+                margin-right: -60px;
+                max-width: 45px;
             }
 
             .top-navbar-separator {
-                font-size: 0.95rem;
-                margin: 0 1px;
+                font-size: 1.1rem;
+                margin: 0 8px;
             }
 
             .top-navbar-username {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
             }
 
             .top-navbar-date {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
 
             .theme-toggle-nav,
