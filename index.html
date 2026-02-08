@@ -348,7 +348,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 8px;
         }
 
         .auth-logo-full img, .auth-logo-full svg {
@@ -416,7 +416,7 @@
 
         .auth-btn {
             padding: 16px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-income) 100%);
+            background: var(--primary-blue);
             border: none;
             border-radius: 14px;
             color: white;
@@ -446,9 +446,9 @@
 
         .auth-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 
-                0 12px 35px rgba(30, 107, 107, 0.4),
-                0 0 20px rgba(199, 93, 45, 0.3);
+            box-shadow:
+                0 12px 35px rgba(37, 99, 235, 0.4),
+                0 0 20px rgba(37, 99, 235, 0.3);
         }
 
         .auth-btn:disabled {
@@ -513,6 +513,55 @@
             text-align: center;
             margin-bottom: 20px;
             position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Scrolled Header - Sticky Top Left */
+        header.scrolled {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: auto;
+            margin-bottom: 0;
+            padding: 12px 20px;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 90;
+            text-align: left;
+            width: auto;
+            border-radius: 0 0 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header.scrolled .header-logo {
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 0;
+        }
+
+        header.scrolled .animated-logo-container {
+            transform: scale(0.4) !important;
+            transform-origin: left center;
+        }
+
+        header.scrolled p {
+            font-size: 0.85rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Add padding to container when header is sticky */
+        .container:has(header.scrolled) {
+            padding-top: 80px;
         }
 
         .header-logo {
@@ -521,6 +570,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: -8px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .header-logo img {
@@ -559,6 +609,7 @@
         header p {
             color: var(--text-secondary);
             font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Settings Button */
@@ -1316,6 +1367,24 @@
             }
             .container {
                 padding-top: 20px;
+            }
+
+            /* Scrolled header on mobile */
+            header.scrolled {
+                padding: 8px 15px;
+                border-radius: 0 0 16px 0;
+            }
+
+            header.scrolled .animated-logo-container {
+                transform: scale(0.3) !important;
+            }
+
+            header.scrolled p {
+                font-size: 0.75rem;
+            }
+
+            .container:has(header.scrolled) {
+                padding-top: 65px;
             }
         }
 
@@ -3541,6 +3610,23 @@
                     metaThemeColor.setAttribute('content', theme === 'light' ? '#f8f9fa' : '#0a0a0f');
                 }
             }, [theme]);
+
+            // Handle scroll for sticky header
+            React.useEffect(() => {
+                const handleScroll = () => {
+                    const header = document.querySelector('header');
+                    if (header) {
+                        if (window.scrollY > 100) {
+                            header.classList.add('scrolled');
+                        } else {
+                            header.classList.remove('scrolled');
+                        }
+                    }
+                };
+
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
 
             const toggleTheme = () => {
                 setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark');
