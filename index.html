@@ -476,7 +476,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 2px;
+            margin-bottom: -8px;
         }
 
         .header-logo img {
@@ -1033,14 +1033,14 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg,
-                rgba(37, 99, 235, 0.8),
-                rgba(59, 130, 246, 0.9),
-                rgba(96, 165, 250, 0.8));
+                rgba(37, 99, 235, 0.35),
+                rgba(59, 130, 246, 0.45),
+                rgba(96, 165, 250, 0.35));
             border-radius: 32px 32px 0 0;
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
-            opacity: 0.9;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
+            opacity: 0.7;
         }
 
         @keyframes liquidFlow {
@@ -1181,9 +1181,9 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             border-radius: 28px 28px 0 0;
-            opacity: 0.85;
+            opacity: 0.7;
             animation: shimmer 3s ease-in-out infinite;
         }
 
@@ -1216,19 +1216,19 @@
 
         @keyframes shimmer {
             0%, 100% {
-                opacity: 0.85;
+                opacity: 0.6;
             }
             50% {
-                opacity: 1;
+                opacity: 0.8;
             }
         }
 
         .summary-card.income::before {
             background: linear-gradient(90deg,
-                rgba(16, 185, 129, 0.9),
-                rgba(52, 211, 153, 1),
-                rgba(110, 231, 183, 0.9));
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+                rgba(16, 185, 129, 0.35),
+                rgba(52, 211, 153, 0.45),
+                rgba(110, 231, 183, 0.35));
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
         }
 
         .summary-card.income::after {
@@ -1244,10 +1244,10 @@
 
         .summary-card.expense::before {
             background: linear-gradient(90deg,
-                rgba(239, 68, 68, 0.9),
-                rgba(248, 113, 113, 1),
-                rgba(252, 165, 165, 0.9));
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+                rgba(239, 68, 68, 0.35),
+                rgba(248, 113, 113, 0.45),
+                rgba(252, 165, 165, 0.35));
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
         }
 
         .summary-card.expense::after {
