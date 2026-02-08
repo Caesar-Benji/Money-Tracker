@@ -1028,7 +1028,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #2563EB, #3B82F6, #EF4444, #6B7280);
+            background: linear-gradient(90deg, #2563EB, #3B82F6, #60A5FA);
             border-radius: 28px 28px 0 0;
         }
 
@@ -1068,7 +1068,7 @@
         }
 
         .balance-hero .balance-amount.negative {
-            background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+            background: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1917,11 +1917,11 @@
         }
 
         .card.form-card.expense-mode h2 {
-            color: #f87171;
+            color: var(--text-primary);
         }
 
         .card.form-card.income-mode h2 {
-            color: #3B82F6;
+            color: var(--text-primary);
         }
 
         /* Tabs */
@@ -1960,9 +1960,9 @@
         }
 
         .tab.active.income-tab {
-            background: linear-gradient(135deg, #2563EB 0%, #0F3D3D 100%);
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(30, 107, 107, 0.4);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
         }
 
         /* Form Elements */
@@ -2116,23 +2116,23 @@
         }
 
         .expense-mode .submit-btn {
-            background: linear-gradient(135deg, #EF4444 0%, #10B981 100%);
+            background: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
         }
 
         .expense-mode .submit-btn:hover:not(:disabled) {
-            box-shadow: 
-                0 12px 35px rgba(199, 93, 45, 0.4),
-                0 0 20px rgba(232, 134, 74, 0.2);
+            box-shadow:
+                0 12px 35px rgba(239, 68, 68, 0.4),
+                0 0 20px rgba(248, 113, 113, 0.3);
         }
 
         .income-mode .submit-btn {
-            background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+            background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
         }
 
         .income-mode .submit-btn:hover:not(:disabled) {
-            box-shadow: 
-                0 12px 35px rgba(30, 107, 107, 0.4),
-                0 0 20px rgba(58, 148, 148, 0.2);
+            box-shadow:
+                0 12px 35px rgba(16, 185, 129, 0.4),
+                0 0 20px rgba(52, 211, 153, 0.3);
         }
 
         /* Chart Container */
