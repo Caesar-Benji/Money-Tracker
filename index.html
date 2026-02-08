@@ -560,16 +560,21 @@
         }
 
         .top-navbar-logo {
-            transform: scale(0.28);
-            transform-origin: left center;
             margin-left: 0;
-            margin-right: 4px;
+            margin-right: 8px;
             flex-shrink: 0;
-            width: 75px;
-            height: 100%;
+            max-width: 60px;
+            max-height: 48px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
+        }
+
+        .top-navbar-logo > * {
+            max-width: 100%;
+            max-height: 48px;
+            width: auto;
+            height: auto;
         }
 
         .top-navbar-separator {
@@ -1460,11 +1465,14 @@
             }
 
             .top-navbar-logo {
-                transform: scale(0.25);
                 margin-left: 0;
-                margin-right: 4px;
-                width: 70px;
-                height: 100%;
+                margin-right: 8px;
+                max-width: 55px;
+                max-height: 44px;
+            }
+
+            .top-navbar-logo > * {
+                max-height: 44px;
             }
 
             .top-navbar-separator {
