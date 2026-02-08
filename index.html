@@ -524,10 +524,10 @@
         /* Sticky Top Navigation Bar */
         .top-navbar {
             position: fixed;
-            top: -120px;
+            top: -80px;
             left: 0;
             right: 0;
-            height: 85px;
+            height: 60px;
             background: rgba(10, 10, 15, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -563,18 +563,16 @@
             margin-left: 0;
             margin-right: 8px;
             flex-shrink: 0;
-            max-width: 60px;
-            max-height: 48px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
         }
 
         .top-navbar-logo > * {
-            max-width: 100%;
-            max-height: 48px;
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
         }
 
         .top-navbar-separator {
@@ -1466,13 +1464,9 @@
 
             .top-navbar-logo {
                 margin-left: 0;
-                margin-right: 8px;
-                max-width: 55px;
-                max-height: 44px;
-            }
-
-            .top-navbar-logo > * {
-                max-height: 44px;
+                margin-right: 6px;
+                width: 36px;
+                height: 36px;
             }
 
             .top-navbar-separator {
@@ -4467,7 +4461,7 @@
                     <div className="top-navbar">
                         <div className="top-navbar-left">
                             <div className="top-navbar-logo">
-                                <AnimatedLogo size="large" />
+                                <AnimatedLogo size="navbar" />
                             </div>
                             {userName && (
                                 <>
@@ -5128,37 +5122,46 @@
         // =====================
         function AnimatedLogo({ size = "large" }) {
             const [isHovered, setIsHovered] = React.useState(false);
-            
+            const isNavbar = size === "navbar";
+
             const containerStyle = {
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '8px'
+                padding: isNavbar ? '0' : '8px'
             };
-            
+
+            const getWidth = () => {
+                if (size === "navbar") return '40px';
+                if (size === "large") return '520px';
+                return '360px';
+            };
+
             const logoStyle = {
-                width: size === "large" ? '520px' : '360px',
+                width: getWidth(),
                 height: 'auto',
-                maxWidth: '85vw',
+                maxWidth: isNavbar ? '40px' : '85vw',
                 objectFit: 'contain',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                filter: isHovered 
-                    ? 'drop-shadow(0 12px 40px rgba(37, 99, 235, 0.3)) drop-shadow(0 0 20px rgba(239, 68, 68, 0.15))'
-                    : 'drop-shadow(0 8px 30px rgba(37, 99, 235, 0.2))',
-                transform: isHovered ? 'scale(1.03)' : 'scale(1)'
+                transition: isNavbar ? 'none' : 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                filter: isNavbar
+                    ? 'none'
+                    : (isHovered
+                        ? 'drop-shadow(0 12px 40px rgba(37, 99, 235, 0.3)) drop-shadow(0 0 20px rgba(239, 68, 68, 0.15))'
+                        : 'drop-shadow(0 8px 30px rgba(37, 99, 235, 0.2))'),
+                transform: (isNavbar || !isHovered) ? 'scale(1)' : 'scale(1.03)'
             };
-            
+
             return (
                 <div style={containerStyle} className="animated-logo-container">
-                    <img 
-                        src={LOGO_IMAGE} 
-                        alt="TRACKER" 
+                    <img
+                        src={LOGO_IMAGE}
+                        alt="TRACKER"
                         style={logoStyle}
                         className="logo-main"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
+                        onMouseEnter={() => !isNavbar && setIsHovered(true)}
+                        onMouseLeave={() => !isNavbar && setIsHovered(false)}
                     />
                 </div>
             );
