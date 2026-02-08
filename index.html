@@ -965,12 +965,16 @@
             font-weight: 600;
             color: var(--text-primary);
             padding: 12px 28px;
-            background: rgba(30, 35, 50, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
             border-radius: 50px;
             display: inline-block;
             letter-spacing: 1px;
+            box-shadow:
+                0 4px 16px 0 rgba(0, 0, 0, 0.3),
+                inset 0 1px 2px 0 rgba(255, 255, 255, 0.15);
             cursor: pointer;
             box-shadow: 
                 0 4px 20px rgba(0, 0, 0, 0.2),
@@ -995,19 +999,20 @@
 
         /* Hero Balance Section */
         .balance-hero {
-            background: rgba(30, 35, 50, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 32px;
             padding: 44px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
             text-align: center;
             margin-bottom: 24px;
             position: relative;
             overflow: hidden;
-            box-shadow: 
-                0 25px 80px rgba(0, 0, 0, 0.4),
-                0 0 40px rgba(30, 107, 107, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            box-shadow:
+                0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                inset 0 1px 2px 0 rgba(255, 255, 255, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
         }
 
         .balance-hero::before {
@@ -1017,8 +1022,9 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
-            animation: balanceGlow 12s ease-in-out infinite;
+            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, rgba(16, 185, 129, 0.08) 50%, transparent 70%);
+            animation: liquidFlow 15s ease-in-out infinite;
+            opacity: 0.6;
         }
 
         .balance-hero::after {
@@ -1027,14 +1033,33 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #2563EB, #3B82F6, #60A5FA);
-            border-radius: 28px 28px 0 0;
+            height: 4px;
+            background: linear-gradient(90deg,
+                rgba(37, 99, 235, 0.8),
+                rgba(59, 130, 246, 0.9),
+                rgba(96, 165, 250, 0.8));
+            border-radius: 32px 32px 0 0;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+            opacity: 0.9;
         }
 
-        @keyframes balanceGlow {
-            0%, 100% { transform: translate(0, 0); opacity: 0.5; }
-            50% { transform: translate(10%, 10%); opacity: 1; }
+        @keyframes liquidFlow {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.6;
+            }
+            25% {
+                transform: translate(5%, 5%) rotate(5deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(10%, 10%) rotate(10deg);
+                opacity: 1;
+            }
+            75% {
+                transform: translate(5%, 15%) rotate(5deg);
+                opacity: 0.8;
+            }
         }
 
         .balance-hero h2 {
@@ -1115,10 +1140,10 @@
                 padding-top: 10px;
             }
             .header-logo img {
-                max-width: 220px;
+                max-width: 280px;
             }
             .animated-logo-container {
-                transform: scale(0.6);
+                transform: scale(0.75);
                 transform-origin: center;
             }
             .settings-btn {
@@ -1134,18 +1159,20 @@
         }
 
         .summary-card {
-            background: rgba(30, 35, 50, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-radius: 28px;
             padding: 28px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             text-align: center;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 
-                0 10px 40px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 8px 32px 0 rgba(0, 0, 0, 0.35),
+                inset 0 1px 2px 0 rgba(255, 255, 255, 0.12),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
         }
 
         .summary-card::before {
@@ -1154,48 +1181,84 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            border-radius: 24px 24px 0 0;
+            height: 4px;
+            border-radius: 28px 28px 0 0;
+            opacity: 0.85;
+            animation: shimmer 3s ease-in-out infinite;
         }
 
         .summary-card::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 24px;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            border-radius: 28px;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.5s ease;
             pointer-events: none;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
         }
 
         .summary-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.35),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-6px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow:
+                0 16px 48px 0 rgba(0, 0, 0, 0.4),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.18),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
         }
 
         .summary-card:hover::after {
             opacity: 1;
         }
 
+        @keyframes shimmer {
+            0%, 100% {
+                opacity: 0.85;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
         .summary-card.income::before {
-            background: linear-gradient(90deg, #10B981, #34D399, #6EE7B7);
+            background: linear-gradient(90deg,
+                rgba(16, 185, 129, 0.9),
+                rgba(52, 211, 153, 1),
+                rgba(110, 231, 183, 0.9));
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
         }
 
         .summary-card.income::after {
-            box-shadow: 0 0 40px rgba(16, 185, 129, 0.15);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+        }
+
+        .summary-card.income:hover {
+            box-shadow:
+                0 16px 48px 0 rgba(16, 185, 129, 0.25),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.18),
+                0 0 30px rgba(16, 185, 129, 0.2);
         }
 
         .summary-card.expense::before {
-            background: linear-gradient(90deg, #EF4444, #F87171, #FCA5A5);
+            background: linear-gradient(90deg,
+                rgba(239, 68, 68, 0.9),
+                rgba(248, 113, 113, 1),
+                rgba(252, 165, 165, 0.9));
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
         }
 
         .summary-card.expense::after {
-            box-shadow: 0 0 40px rgba(239, 68, 68, 0.15);
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+        }
+
+        .summary-card.expense:hover {
+            box-shadow:
+                0 16px 48px 0 rgba(239, 68, 68, 0.25),
+                inset 0 2px 4px 0 rgba(255, 255, 255, 0.18),
+                0 0 30px rgba(239, 68, 68, 0.2);
         }
 
         .summary-card h3 {
@@ -2601,17 +2664,70 @@
         }
 
         @media (max-width: 768px) {
+            /* Make widgets more compact for mobile */
+            .balance-hero {
+                padding: 24px 20px;
+                margin-bottom: 16px;
+                border-radius: 20px;
+            }
+
+            .balance-hero .balance-amount {
+                font-size: 2.2rem !important;
+                letter-spacing: -2px;
+            }
+
+            .balance-hero h2 {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                margin-bottom: 10px;
+            }
+
+            .balance-subtitle {
+                font-size: 0.8rem;
+                margin-top: 8px;
+            }
+
+            .summary-card {
+                padding: 18px 16px;
+                border-radius: 18px;
+            }
+
+            .summary-card h3 {
+                font-size: 0.7rem;
+                margin-bottom: 10px;
+                letter-spacing: 1.5px;
+            }
+
+            .summary-card .amount {
+                font-size: 1.3rem !important;
+            }
+
             .featured-balance {
                 font-size: 2.8rem;
             }
-            
+
             .stat-card .amount {
                 font-size: 1.5rem;
             }
-            
+
             .dashboard-content {
                 padding: 12px;
                 padding-bottom: 80px;
+            }
+
+            .month-display {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+                margin-bottom: 16px;
+            }
+
+            /* Make logo section more compact */
+            header {
+                margin-bottom: 16px;
+            }
+
+            header p {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -3826,6 +3942,11 @@
 
             return (
                 <div className="app-container" dir={language === 'he' ? 'rtl' : 'ltr'}>
+
+                    {/* Settings Button */}
+                    <button className="settings-btn" onClick={() => setSidebarOpen(true)}>
+                        ⚙️
+                    </button>
 
                     {/* Sidebar Overlay */}
                     <div className={`sidebar-overlay ${sidebarOpen ? 'active' : ''}`} onClick={() => setSidebarOpen(false)} />
