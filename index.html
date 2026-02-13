@@ -3206,23 +3206,30 @@
             he: {
                 expense: ['מצרכים', 'מסעדות', 'דלק', 'תחבורה', 'קניות', 'בידור', 'חשבונות', 'שכירות ודיור', 'בריאות', 'חינוך', 'נסיעות', 'טיפוח אישי', 'מנויים', 'ביטוח', 'ילדים ומשפחה', 'חיות מחמד', 'מתנות', 'תשלום הלוואה', 'אחר'],
                 income: ['משכורת', 'פרילנס', 'עסק', 'השקעות', 'הכנסה משכירות', 'מתנות', 'החזרים', 'בונוס', 'אחר']
+            },
+            ru: {
+                expense: ['Продукты', 'Рестораны', 'Бензин', 'Транспорт', 'Покупки', 'Развлечения', 'Счета и ЖКХ', 'Аренда жилья', 'Здоровье', 'Образование', 'Путешествия', 'Личный уход', 'Подписки', 'Страхование', 'Дети и семья', 'Питомцы', 'Подарки', 'Выплата займа', 'Другое'],
+                income: ['Зарплата', 'Фриланс', 'Бизнес', 'Инвестиции', 'Аренда', 'Подарки', 'Возвраты', 'Бонус', 'Другое']
             }
         };
 
         // Category mapping between languages (index-based)
         const getCategoryIndex = (category, lang) => {
-            const expenseIdx = categoriesData[lang].expense.indexOf(category);
+            const langData = categoriesData[lang] || categoriesData['en'];
+            const expenseIdx = langData.expense.indexOf(category);
             if (expenseIdx !== -1) return { type: 'expense', index: expenseIdx };
-            const incomeIdx = categoriesData[lang].income.indexOf(category);
+            const incomeIdx = langData.income.indexOf(category);
             if (incomeIdx !== -1) return { type: 'income', index: incomeIdx };
             return null;
         };
 
         const translateCategory = (category, fromLang, toLang) => {
             if (fromLang === toLang) return category;
+            const fromData = categoriesData[fromLang] || categoriesData['en'];
+            const toData = categoriesData[toLang] || categoriesData['en'];
             const mapping = getCategoryIndex(category, fromLang);
             if (!mapping) return category;
-            return categoriesData[toLang][mapping.type][mapping.index] || category;
+            return toData[mapping.type][mapping.index] || category;
         };
 
         const categoryColors = {
@@ -3240,12 +3247,22 @@
             'חינוך': '#3b82f6', 'נסיעות': '#2563EB', 'טיפוח אישי': '#EF4444',
             'מנויים': '#d946ef', 'ביטוח': '#10B981', 'ילדים ומשפחה': '#f43f5e',
             'חיות מחמד': '#fb7185', 'מתנות': '#64748b', 'תשלום הלוואה': '#475569', 'אחר': '#94a3b8',
+            // Russian expense
+            'Продукты': '#EF4444', 'Рестораны': '#2563EB', 'Бензин': '#6B7280',
+            'Транспорт': '#10B981', 'Покупки': '#84cc16', 'Развлечения': '#3B82F6',
+            'Счета и ЖКХ': '#0F3D3D', 'Аренда жилья': '#06b6d4', 'Здоровье': '#0ea5e9',
+            'Образование': '#3b82f6', 'Путешествия': '#2563EB', 'Личный уход': '#EF4444',
+            'Подписки': '#d946ef', 'Страхование': '#10B981', 'Дети и семья': '#f43f5e',
+            'Питомцы': '#fb7185', 'Подарки': '#64748b', 'Выплата займа': '#475569', 'Другое': '#94a3b8',
             // English income
             'Salary': '#2563EB', 'Freelance': '#3B82F6', 'Business': '#0F3D3D',
             'Investments': '#6B7280', 'Rental Income': '#0ea5e9', 'Refunds': '#3b82f6', 'Bonus': '#EF4444',
             // Hebrew income
             'משכורת': '#2563EB', 'פרילנס': '#3B82F6', 'עסק': '#0F3D3D',
-            'השקעות': '#6B7280', 'הכנסה משכירות': '#0ea5e9', 'החזרים': '#3b82f6', 'בונוס': '#EF4444'
+            'השקעות': '#6B7280', 'הכנסה משכירות': '#0ea5e9', 'החזרים': '#3b82f6', 'בונוס': '#EF4444',
+            // Russian income
+            'Зарплата': '#2563EB', 'Фриланс': '#3B82F6', 'Бизнес': '#0F3D3D',
+            'Инвестиции': '#6B7280', 'Аренда': '#0ea5e9', 'Возвраты': '#3b82f6', 'Бонус': '#EF4444'
         };
 
         const goalIcons = ['🎯', '✈️', '🏠', '🚗', '💻', '📱', '🎓', '💍', '🎁', '🏝️', '🎮', '📷'];
@@ -3934,8 +3951,8 @@
             const trendChartInstance = React.useRef(null);
 
             // Translation helper
-            const t = (key) => translations[language][key] || key;
-            const categories = categoriesData[language];
+            const t = (key) => (translations[language] || translations['en'])[key] || translations['en'][key] || key;
+            const categories = categoriesData[language] || categoriesData['en'];
 
             // Load data
             React.useEffect(() => {
