@@ -420,6 +420,34 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
+        .password-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-input-wrapper input {
+            width: 100%;
+            padding-right: 48px;
+        }
+
+        .password-toggle-btn {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px;
+            line-height: 1;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .password-toggle-btn:hover {
+            opacity: 1;
+        }
+
         .auth-btn {
             padding: 16px;
             background: var(--primary-blue);
@@ -3158,37 +3186,32 @@
             },
 
             // Rate limiting for login attempts
-            rateLimiter: {
-                attempts: {},
-                maxAttempts: 5,
-                windowMs: 15 * 60 * 1000, // 15 minutes
-
-                canAttempt: (key) => {
-                    const now = Date.now();
-                    if (!this.attempts[key]) {
-                        this.attempts[key] = { count: 1, resetAt: now + this.windowMs };
+            rateLimiter: (() => {
+                const attempts = {};
+                const maxAttempts = 5;
+                const windowMs = 15 * 60 * 1000; // 15 minutes
+                return {
+                    canAttempt: (key) => {
+                        const now = Date.now();
+                        if (!attempts[key]) {
+                            attempts[key] = { count: 1, resetAt: now + windowMs };
+                            return true;
+                        }
+                        if (now > attempts[key].resetAt) {
+                            attempts[key] = { count: 1, resetAt: now + windowMs };
+                            return true;
+                        }
+                        if (attempts[key].count >= maxAttempts) return false;
+                        attempts[key].count++;
                         return true;
+                    },
+                    getRemainingTime: (key) => {
+                        if (!attempts[key]) return 0;
+                        const remaining = attempts[key].resetAt - Date.now();
+                        return remaining > 0 ? Math.ceil(remaining / 1000 / 60) : 0;
                     }
-
-                    if (now > this.attempts[key].resetAt) {
-                        this.attempts[key] = { count: 1, resetAt: now + this.windowMs };
-                        return true;
-                    }
-
-                    if (this.attempts[key].count >= this.maxAttempts) {
-                        return false;
-                    }
-
-                    this.attempts[key].count++;
-                    return true;
-                },
-
-                getRemainingTime: (key) => {
-                    if (!this.attempts[key]) return 0;
-                    const remaining = this.attempts[key].resetAt - Date.now();
-                    return remaining > 0 ? Math.ceil(remaining / 1000 / 60) : 0;
-                }
-            }
+                };
+            })()
         };
 
         // Logo image (blue/purple/cyan owl)
@@ -3711,6 +3734,9 @@
             const [isLogin, setIsLogin] = React.useState(true);
             const [email, setEmail] = React.useState('');
             const [password, setPassword] = React.useState('');
+            const [confirmPassword, setConfirmPassword] = React.useState('');
+            const [showPassword, setShowPassword] = React.useState(false);
+            const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
             const [name, setName] = React.useState('');
             const [age, setAge] = React.useState('');
             const [loading, setLoading] = React.useState(false);
@@ -3743,6 +3769,11 @@
                         if (error) throw error;
                         onAuthSuccess(data.user);
                     } else {
+                        // Check passwords match
+                        if (password !== confirmPassword) {
+                            throw new Error('Passwords do not match');
+                        }
+
                         // Security: Password strength validation
                         const passwordValidation = SecurityUtils.validatePassword(password);
                         if (!passwordValidation.valid) {
@@ -3860,15 +3891,56 @@
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="••••••••"
-                                    required
-                                    minLength={6}
-                                />
+                                <div className="password-input-wrapper">
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder="••••••••"
+                                        required
+                                        minLength={6}
+                                    />
+                                    <button
+                                        type="button"
+                                        className="password-toggle-btn"
+                                        onClick={() => setShowPassword(prev => !prev)}
+                                        tabIndex="-1"
+                                        aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                    >
+                                        {showPassword ? '🙈' : '👁️'}
+                                    </button>
+                                </div>
                             </div>
+                            {!isLogin && (
+                                <div className="form-group">
+                                    <label>Confirm Password</label>
+                                    <div className="password-input-wrapper">
+                                        <input
+                                            type={showConfirmPassword ? 'text' : 'password'}
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            placeholder="••••••••"
+                                            required
+                                            minLength={6}
+                                            style={{ borderColor: confirmPassword && confirmPassword !== password ? '#EF4444' : '' }}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="password-toggle-btn"
+                                            onClick={() => setShowConfirmPassword(prev => !prev)}
+                                            tabIndex="-1"
+                                            aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                                        >
+                                            {showConfirmPassword ? '🙈' : '👁️'}
+                                        </button>
+                                    </div>
+                                    {confirmPassword && confirmPassword !== password && (
+                                        <span style={{ color: '#EF4444', fontSize: '0.8rem', marginTop: '4px', display: 'block' }}>
+                                            Passwords do not match
+                                        </span>
+                                    )}
+                                </div>
+                            )}
                             <button type="submit" className="auth-btn" disabled={loading}>
                                 {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
                             </button>
@@ -3876,7 +3948,7 @@
 
                         <div className="auth-switch">
                             {isLogin ? "Don't have an account? " : "Already have an account? "}
-                            <button onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess(''); setName(''); setAge(''); }}>
+                            <button onClick={() => { setIsLogin(!isLogin); setError(''); setSuccess(''); setName(''); setAge(''); setConfirmPassword(''); setShowPassword(false); setShowConfirmPassword(false); }}>
                                 {isLogin ? 'Sign Up' : 'Sign In'}
                             </button>
                         </div>
