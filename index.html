@@ -437,11 +437,16 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 1.1rem;
-            padding: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            padding: 4px 6px;
             line-height: 1;
-            opacity: 0.6;
+            opacity: 0.7;
             transition: opacity 0.2s;
+            font-family: inherit;
         }
 
         .password-toggle-btn:hover {
@@ -3719,10 +3724,13 @@
         // Utility Functions
         // =====================
         const formatCurrency = (amount, currency = 'USD') => {
+            const safeAmount = parseFloat(amount);
+            const safeValue = isNaN(safeAmount) ? 0 : safeAmount;
+            const safeCurrency = currency && currency.length === 3 ? currency : 'USD';
             return new Intl.NumberFormat('en-US', {
                 style: 'currency',
-                currency: currency
-            }).format(amount);
+                currency: safeCurrency
+            }).format(safeValue);
         };
 
         const formatDate = (dateStr) => {
@@ -3837,7 +3845,7 @@
                         
                         const isConfirmed = data.user && (data.user.confirmed_at || data.user.email_confirmed_at);
                         if (data.user && !isConfirmed) {
-                            setSuccess('✅ Account created! Check your email and click the confirmation link to sign in.');
+                            setSuccess('Account created! Check your email and click the confirmation link to sign in.');
                         } else if (data.user) {
                             onAuthSuccess(data.user);
                         }
@@ -3918,7 +3926,7 @@
                                         tabIndex="-1"
                                         aria-label={showPassword ? 'Hide password' : 'Show password'}
                                     >
-                                        {showPassword ? '🙈' : '👁️'}
+                                        {showPassword ? 'Hide' : 'Show'}
                                     </button>
                                 </div>
                             </div>
@@ -3942,7 +3950,7 @@
                                             tabIndex="-1"
                                             aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
                                         >
-                                            {showConfirmPassword ? '🙈' : '👁️'}
+                                            {showConfirmPassword ? 'Hide' : 'Show'}
                                         </button>
                                     </div>
                                     {confirmPassword && confirmPassword !== password && (
@@ -4535,8 +4543,12 @@
 
             // Calculate loan progress
             const getLoanProgress = (loan) => {
-                const totalAmount = loan.principal * (1 + (loan.interest_rate / 100) * (loan.term_months / 12));
-                const progress = (loan.total_paid / totalAmount) * 100;
+                const principal = parseFloat(loan.principal) || 0;
+                const interestRate = parseFloat(loan.interest_rate) || 0;
+                const termMonths = parseFloat(loan.term_months) || 1;
+                const totalPaid = parseFloat(loan.total_paid) || 0;
+                const totalAmount = principal * (1 + (interestRate / 100) * (termMonths / 12));
+                const progress = totalAmount > 0 ? (totalPaid / totalAmount) * 100 : 0;
                 return { totalAmount, progress: Math.min(progress, 100) };
             };
 
@@ -4564,8 +4576,8 @@
             };
 
             // Calculate summary
-            const income = transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + parseFloat(t.amount), 0);
-            const expenses = transactions.filter(t => t.type === 'expense').reduce((sum, t) => sum + parseFloat(t.amount), 0);
+            const income = transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + (parseFloat(t.amount) || 0), 0);
+            const expenses = transactions.filter(t => t.type === 'expense').reduce((sum, t) => sum + (parseFloat(t.amount) || 0), 0);
             const balance = income - expenses;
 
             // Calculate spending statistics
@@ -4585,16 +4597,16 @@
             // Find top spending category
             const categoryTotals = {};
             expenseTransactions.forEach(t => {
-                categoryTotals[t.category] = (categoryTotals[t.category] || 0) + parseFloat(t.amount);
+                categoryTotals[t.category] = (categoryTotals[t.category] || 0) + (parseFloat(t.amount) || 0);
             });
             const topCategory = Object.entries(categoryTotals).sort((a, b) => b[1] - a[1])[0];
-            
+
             // Food spending — use actual category names from current language (indices 0=Groceries, 1=Dining Out)
             const langCats = categoriesData[language] || categoriesData['en'];
             const foodCategories = [langCats.expense[0], langCats.expense[1]]; // Groceries + Dining Out
             const foodSpending = expenseTransactions
                 .filter(t => foodCategories.includes(t.category))
-                .reduce((sum, t) => sum + parseFloat(t.amount), 0);
+                .reduce((sum, t) => sum + (parseFloat(t.amount) || 0), 0);
 
             // Filter transactions
             let filteredTransactions = transactions;
@@ -4753,7 +4765,7 @@
                     {/* Settings Sidebar */}
                     <div className={`settings-sidebar ${sidebarOpen ? 'active' : ''}`}>
                         <div className="sidebar-header">
-                            <h2>⚙️ {t('settings')}</h2>
+                            <h2>{t('settings')}</h2>
                             <button className="close-btn" onClick={() => setSidebarOpen(false)}>✕</button>
                         </div>
                         <div className="sidebar-content">
@@ -4841,13 +4853,13 @@
                             <div className="settings-section">
                                 <h3>{t('data')}</h3>
                                 <div className="sidebar-actions">
-                                    <button className="btn-export" onClick={handleExport}>📥 {t('exportData')}</button>
+                                    <button className="btn-export" onClick={handleExport}>{t('exportData')}</button>
                                 </div>
                             </div>
                             <div className="settings-section">
                                 <h3>{t('account')}</h3>
                                 <div className="sidebar-actions">
-                                    <button className="btn-logout" onClick={onLogout}>🚪 {t('signOut')}</button>
+                                    <button className="btn-logout" onClick={onLogout}>{t('signOut')}</button>
                                 </div>
                             </div>
                         </div>
@@ -4863,7 +4875,7 @@
                     {/* Goal Modal */}
                     <div className={`modal-overlay ${goalModalOpen ? 'active' : ''}`}>
                         <div className="modal">
-                            <h3>🎯 New Savings Goal</h3>
+                            <h3>{selectedGoal ? t('editGoal') : t('newGoal')}</h3>
                             <form onSubmit={handleSaveGoal}>
                                 <div className="form-group">
                                     <label>Goal Name</label>
@@ -4923,7 +4935,7 @@
                     {/* Add Funds Modal */}
                     <div className={`modal-overlay ${addFundsModalOpen ? 'active' : ''}`}>
                         <div className="modal">
-                            <h3>💰 Add Funds</h3>
+                            <h3>{t('addFunds')}</h3>
                             <form onSubmit={handleAddFunds}>
                                 <div className="form-group">
                                     <label>Goal: <span style={{ color: '#6B7280' }}>{selectedGoal?.name}</span></label>
@@ -4985,7 +4997,7 @@
                         {/* Goals Section */}
                         <div className="goals-section">
                             <div className="goals-header">
-                                <h2><span className="icon">🎯</span> {t('savingsGoals')}</h2>
+                                <h2>{t('savingsGoals')}</h2>
                                 <button className="add-goal-btn" onClick={() => setGoalModalOpen(true)}>{t('addGoal')}</button>
                             </div>
                             <div className="goals-grid">
@@ -4993,7 +5005,9 @@
                                     <div className="no-goals">{t('startTracking')}</div>
                                 ) : (
                                     goals.map(goal => {
-                                        const progress = Math.min((parseFloat(goal.current) / parseFloat(goal.target)) * 100, 100);
+                                        const goalCurrent = parseFloat(goal.current) || 0;
+                                        const goalTarget = parseFloat(goal.target) || 1;
+                                        const progress = Math.min((goalCurrent / goalTarget) * 100, 100);
                                         const isComplete = progress >= 100;
                                         return (
                                             <div key={goal.id} className="goal-card">
@@ -5028,7 +5042,7 @@
                         <div className="grid">
                             {/* Add Transaction Card */}
                             <div className={`card form-card ${transactionType}-mode`}>
-                                <h2><span className="icon">➕</span> {t('addTransaction')}</h2>
+                                <h2>{t('addTransaction')}</h2>
                                 <div className="tabs">
                                     <div
                                         className={`tab expense-tab ${transactionType === 'expense' ? 'active' : ''}`}
@@ -5102,7 +5116,7 @@
 
                             {/* Category Chart */}
                             <div className="card">
-                                <h2><span className="icon">📊</span> {t('expensesByCategory')}</h2>
+                                <h2>{t('expensesByCategory')}</h2>
                                 <div className="chart-container">
                                     <canvas ref={categoryChartRef}></canvas>
                                 </div>
@@ -5112,7 +5126,7 @@
                         <div className="grid">
                             {/* Trend Chart */}
                             <div className="card">
-                                <h2><span className="icon">📈</span> {t('incomeVsExpenses')}</h2>
+                                <h2>{t('incomeVsExpenses')}</h2>
                                 <div className="chart-container">
                                     <canvas ref={trendChartRef}></canvas>
                                 </div>
@@ -5136,7 +5150,7 @@
 
                             {/* Transactions List */}
                             <div className="card">
-                                <h2><span className="icon">📝</span> {t('transactions')}</h2>
+                                <h2>{t('transactions')}</h2>
                                 <div className="search-box">
                                     <input
                                         type="text"
@@ -5161,7 +5175,6 @@
                                 <div className="transactions-list">
                                     {filteredTransactions.length === 0 ? (
                                         <div className="empty-state">
-                                            <div className="empty-state-icon">📭</div>
                                             {t('noTransactions')}
                                         </div>
                                     ) : (
@@ -5181,7 +5194,7 @@
                                 </div>
                                 <div className="stats-row">
                                     <span>{transactions.length} {t('transactions').toLowerCase()}</span>
-                                    <span>☁️ {t('cloudSync')}</span>
+                                    <span>{t('cloudSync')}</span>
                                 </div>
                             </div>
                         </div>
@@ -5189,7 +5202,7 @@
                         {/* Recurring Transactions Section */}
                         <div className="card" style={{marginBottom: '24px'}}>
                             <div className="section-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px'}}>
-                                <h2><span className="icon">🔄</span> {t('recurringTransactions')}</h2>
+                                <h2>{t('recurringTransactions')}</h2>
                                 <button className="add-goal-btn" onClick={() => openRecurringModal()}>{t('addRecurring')}</button>
                             </div>
                             {recurringTransactions.length === 0 ? (
@@ -5213,8 +5226,8 @@
                                             {rec.type === 'income' ? '+' : '-'}{formatCurrency(rec.amount, currency)}
                                         </div>
                                         <div className="item-actions">
-                                            <button className="btn-edit-item" onClick={() => openRecurringModal(rec)}>✏️</button>
-                                            <button className="btn-delete-item" onClick={() => openDeleteModal('recurring', rec.id, rec.category)}>🗑️</button>
+                                            <button className="btn-edit-item" onClick={() => openRecurringModal(rec)}>{t('editRecurring').split(' ')[0]}</button>
+                                            <button className="btn-delete-item" onClick={() => openDeleteModal('recurring', rec.id, rec.category)}>{t('delete')}</button>
                                         </div>
                                     </div>
                                 ))
@@ -5224,7 +5237,7 @@
                         {/* Loans Section */}
                         <div className="card" style={{marginBottom: '24px'}}>
                             <div className="section-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px'}}>
-                                <h2><span className="icon">🏦</span> {t('loans')}</h2>
+                                <h2>{t('loans')}</h2>
                                 <button className="add-goal-btn" onClick={() => openLoanModal()}>{t('addLoan')}</button>
                             </div>
                             {loans.length === 0 ? (
@@ -5246,8 +5259,8 @@
                                                 <div className="loan-amount">{formatCurrency(loan.principal, currency)}</div>
                                             </div>
                                             <div className="item-actions">
-                                                <button className="btn-edit-item" onClick={() => openLoanModal(loan)}>✏️</button>
-                                                <button className="btn-delete-item" onClick={() => openDeleteModal('loan', loan.id, loan.name)}>🗑️</button>
+                                                <button className="btn-edit-item" onClick={() => openLoanModal(loan)}>{t('editLoan').split(' ')[0]}</button>
+                                                <button className="btn-delete-item" onClick={() => openDeleteModal('loan', loan.id, loan.name)}>{t('delete')}</button>
                                             </div>
                                             <div className="loan-progress" style={{marginTop: '12px'}}>
                                                 <div className="loan-progress-bar" style={{width: `${progress}%`}}></div>
@@ -5265,7 +5278,7 @@
                         {/* Delete Confirmation Modal */}
                         <div className={`modal-overlay confirm-delete-modal ${deleteModalOpen ? 'active' : ''}`} onClick={() => setDeleteModalOpen(false)}>
                             <div className="modal" onClick={(e) => e.stopPropagation()}>
-                                <h3>⚠️ {t('confirmDelete')}</h3>
+                                <h3>{t('confirmDelete')}</h3>
                                 <p className="modal-message">
                                     {deleteTarget.type === 'transaction' && t('deleteTransactionMsg')}
                                     {deleteTarget.type === 'recurring' && t('deleteRecurringMsg')}
@@ -5283,7 +5296,7 @@
                         {/* Recurring Transaction Modal */}
                         <div className={`modal-overlay ${recurringModalOpen ? 'active' : ''}`} onClick={() => setRecurringModalOpen(false)}>
                             <div className="modal" onClick={(e) => e.stopPropagation()}>
-                                <h3>🔄 {selectedRecurring ? t('editRecurring') : t('newRecurring')}</h3>
+                                <h3>{selectedRecurring ? t('editRecurring') : t('newRecurring')}</h3>
                                 <form onSubmit={handleSaveRecurring}>
                                     <div className="form-group">
                                         <label>{t('type')}</label>
@@ -5327,7 +5340,7 @@
                         {/* Loan Modal */}
                         <div className={`modal-overlay ${loanModalOpen ? 'active' : ''}`} onClick={() => setLoanModalOpen(false)}>
                             <div className="modal" onClick={(e) => e.stopPropagation()}>
-                                <h3>🏦 {selectedLoan ? t('editLoan') : t('newLoan')}</h3>
+                                <h3>{selectedLoan ? t('editLoan') : t('newLoan')}</h3>
                                 <form onSubmit={handleSaveLoan}>
                                     <div className="form-group">
                                         <label>{t('loanName')}</label>
