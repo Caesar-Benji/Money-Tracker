@@ -3248,11 +3248,20 @@
 
         const translateCategory = (category, fromLang, toLang) => {
             if (fromLang === toLang) return category;
-            const fromData = categoriesData[fromLang] || categoriesData['en'];
             const toData = categoriesData[toLang] || categoriesData['en'];
             const mapping = getCategoryIndex(category, fromLang);
             if (!mapping) return category;
             return toData[mapping.type][mapping.index] || category;
+        };
+
+        // Auto-detect which language a stored category belongs to, then translate to target
+        const translateCategoryAuto = (category, toLang) => {
+            if (!category) return category;
+            for (const lang of Object.keys(categoriesData)) {
+                const mapping = getCategoryIndex(category, lang);
+                if (mapping) return (categoriesData[toLang] || categoriesData['en'])[mapping.type][mapping.index] || category;
+            }
+            return category; // unknown category, return as-is
         };
 
         const categoryColors = {
@@ -4039,7 +4048,7 @@
                     renderCategoryChart();
                     renderTrendChart();
                 }
-            }, [transactions, loading, currency]);
+            }, [transactions, loading, currency, language]);
 
             // Handle theme changes
             React.useEffect(() => {
@@ -4110,7 +4119,10 @@
                         .order('date', { ascending: false });
                     
                     if (txError) throw txError;
-                    setTransactions(txData || []);
+                    setTransactions((txData || []).map(tx => ({
+                        ...tx,
+                        category: translateCategoryAuto(tx.category, language)
+                    })));
 
                     // Load goals
                     const { data: goalsData, error: goalsError } = await supabase
@@ -4128,7 +4140,10 @@
                         .eq('user_id', user.id)
                         .order('created_at', { ascending: false });
                     
-                    setRecurringTransactions(recurringData || []);
+                    setRecurringTransactions((recurringData || []).map(rec => ({
+                        ...rec,
+                        category: translateCategoryAuto(rec.category, language)
+                    })));
 
                     // Load loans
                     const { data: loansData } = await supabase
@@ -4356,21 +4371,30 @@
 
             // Language change handler
             const handleLanguageChange = async (newLang) => {
-                const oldLang = language;
                 setLanguage(newLang);
-                
+
+                // Translate all loaded transactions
+                setTransactions(prev => prev.map(tx => ({
+                    ...tx,
+                    category: translateCategoryAuto(tx.category, newLang)
+                })));
+
+                // Translate all loaded recurring transactions
+                setRecurringTransactions(prev => prev.map(rec => ({
+                    ...rec,
+                    category: translateCategoryAuto(rec.category, newLang)
+                })));
+
                 // Translate currently selected category in transaction form
                 if (txForm.category) {
-                    const translatedCat = translateCategory(txForm.category, oldLang, newLang);
-                    setTxForm(prev => ({ ...prev, category: translatedCat }));
+                    setTxForm(prev => ({ ...prev, category: translateCategoryAuto(prev.category, newLang) }));
                 }
-                
+
                 // Translate currently selected category in recurring form
                 if (recurringForm.category) {
-                    const translatedCat = translateCategory(recurringForm.category, oldLang, newLang);
-                    setRecurringForm(prev => ({ ...prev, category: translatedCat }));
+                    setRecurringForm(prev => ({ ...prev, category: translateCategoryAuto(prev.category, newLang) }));
                 }
-                
+
                 try {
                     const { error } = await supabase
                         .from('user_settings')
@@ -4565,14 +4589,11 @@
             });
             const topCategory = Object.entries(categoryTotals).sort((a, b) => b[1] - a[1])[0];
             
-            // Food spending (multiple food-related categories)
-            const foodCategories = language === 'he'
-                ? ['מזון', 'מסעדות', 'קפה']
-                : language === 'ru'
-                ? ['Еда', 'Рестораны', 'Кофе']
-                : ['Food', 'Restaurants', 'Coffee'];
+            // Food spending — use actual category names from current language (indices 0=Groceries, 1=Dining Out)
+            const langCats = categoriesData[language] || categoriesData['en'];
+            const foodCategories = [langCats.expense[0], langCats.expense[1]]; // Groceries + Dining Out
             const foodSpending = expenseTransactions
-                .filter(t => foodCategories.some(cat => t.category.includes(cat) || cat.includes(t.category)))
+                .filter(t => foodCategories.includes(t.category))
                 .reduce((sum, t) => sum + parseFloat(t.amount), 0);
 
             // Filter transactions
@@ -4659,8 +4680,8 @@
                     data: {
                         labels: months,
                         datasets: [
-                            { label: 'Income', data: incomeData, backgroundColor: 'rgba(34, 197, 94, 0.8)', borderRadius: 6, borderSkipped: false },
-                            { label: 'Expenses', data: expenseData, backgroundColor: 'rgba(239, 68, 68, 0.8)', borderRadius: 6, borderSkipped: false }
+                            { label: t('totalIncome'), data: incomeData, backgroundColor: 'rgba(34, 197, 94, 0.8)', borderRadius: 6, borderSkipped: false },
+                            { label: t('totalExpenses'), data: expenseData, backgroundColor: 'rgba(239, 68, 68, 0.8)', borderRadius: 6, borderSkipped: false }
                         ]
                     },
                     options: {
