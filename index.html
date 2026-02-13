@@ -3792,6 +3792,7 @@
                             email: email.trim().toLowerCase(),
                             password,
                             options: {
+                                emailRedirectTo: window.location.origin + window.location.pathname,
                                 data: {
                                     name: sanitizedName,
                                     age: sanitizedAge
@@ -3825,9 +3826,10 @@
                             }
                         }
                         
-                        if (data.user && !data.user.confirmed_at) {
-                            setSuccess('Check your email to confirm your account!');
-                        } else {
+                        const isConfirmed = data.user && (data.user.confirmed_at || data.user.email_confirmed_at);
+                        if (data.user && !isConfirmed) {
+                            setSuccess('✅ Account created! Check your email and click the confirmation link to sign in.');
+                        } else if (data.user) {
                             onAuthSuccess(data.user);
                         }
                     }
@@ -5412,9 +5414,10 @@
                     setLoading(false);
                 });
 
-                // Listen for auth changes
-                const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+                // Listen for auth changes (also handles email confirmation redirect)
+                const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
                     setUser(session?.user || null);
+                    setLoading(false);
                 });
 
                 return () => subscription.unsubscribe();
