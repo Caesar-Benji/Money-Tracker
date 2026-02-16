@@ -4116,9 +4116,10 @@
                         .eq('user_id', user.id)
                         .single();
                     
+                    const currentLang = settings ? (settings.language || 'en') : 'en';
                     if (settings) {
                         setCurrency(settings.currency || 'USD');
-                        setLanguage(settings.language || 'en');
+                        setLanguage(currentLang);
                         setUserName(settings.name || '');
                         setUserAge(settings.age || '');
                     } else if (settingsError && settingsError.code === 'PGRST116') {
@@ -4133,7 +4134,7 @@
                     // Load transactions for current month
                     const startOfMonth = new Date(viewDate.getFullYear(), viewDate.getMonth(), 1).toISOString().split('T')[0];
                     const endOfMonth = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 0).toISOString().split('T')[0];
-                    
+
                     const { data: txData, error: txError } = await supabase
                         .from('transactions')
                         .select('*')
@@ -4141,11 +4142,11 @@
                         .gte('date', startOfMonth)
                         .lte('date', endOfMonth)
                         .order('date', { ascending: false });
-                    
+
                     if (txError) throw txError;
                     setTransactions((txData || []).map(tx => ({
                         ...tx,
-                        category: translateCategoryAuto(tx.category, language)
+                        category: translateCategoryAuto(tx.category, currentLang)
                     })));
 
                     // Load goals
@@ -4153,7 +4154,7 @@
                         .from('goals')
                         .select('*')
                         .eq('user_id', user.id);
-                    
+
                     if (goalsError) throw goalsError;
                     setGoals(goalsData || []);
 
@@ -4163,10 +4164,10 @@
                         .select('*')
                         .eq('user_id', user.id)
                         .order('created_at', { ascending: false });
-                    
+
                     setRecurringTransactions((recurringData || []).map(rec => ({
                         ...rec,
-                        category: translateCategoryAuto(rec.category, language)
+                        category: translateCategoryAuto(rec.category, currentLang)
                     })));
 
                     // Load loans
