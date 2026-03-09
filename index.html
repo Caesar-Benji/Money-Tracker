@@ -679,8 +679,146 @@
 
         /* Hide original floating buttons only when navbar is visible */
         .top-navbar.visible ~ .settings-btn,
-        .top-navbar.visible ~ .theme-toggle {
+        .top-navbar.visible ~ .theme-toggle,
+        .top-navbar.visible ~ .floating-view-toggle {
             display: none;
+        }
+
+        /* Floating view toggle pill (sits alongside settings + theme buttons) */
+        .floating-view-toggle {
+            position: fixed;
+            top: 30px;
+            right: 160px;
+            display: flex;
+            align-items: center;
+            background: rgba(30, 35, 50, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 4px;
+            gap: 3px;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] .floating-view-toggle {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-view-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .floating-view-btn.active-finance {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 2px 12px rgba(37, 99, 235, 0.5);
+        }
+
+        .floating-view-btn.active-fitness {
+            background: #10B981;
+            color: white;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.5);
+        }
+
+        .floating-view-btn:not(.active-finance):not(.active-fitness):hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        [data-theme="light"] .floating-view-btn:not(.active-finance):not(.active-fitness):hover {
+            background: rgba(0, 0, 0, 0.06);
+        }
+
+        /* Segmented control inside the sticky top navbar */
+        .nav-view-toggle {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 3px;
+            gap: 2px;
+            margin-right: 4px;
+        }
+
+        [data-theme="light"] .nav-view-toggle {
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-view-btn {
+            padding: 5px 12px;
+            height: 30px;
+            border: none;
+            border-radius: 7px;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-view-btn.active-finance {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+        }
+
+        .nav-view-btn.active-fitness {
+            background: #10B981;
+            color: white;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+        }
+
+        .nav-view-btn:not(.active-finance):not(.active-fitness):hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        [data-theme="light"] .nav-view-btn:not(.active-finance):not(.active-fitness):hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .floating-view-toggle {
+                top: 15px;
+                right: 125px;
+                border-radius: 13px;
+            }
+            .floating-view-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1.05rem;
+                border-radius: 10px;
+            }
+            .nav-view-btn {
+                padding: 5px 8px;
+                font-size: 0.62rem;
+            }
         }
 
         .header-logo {
@@ -3282,8 +3420,47 @@
         .fitness-modal-date {
             font-size: 0.78rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             display: block;
+        }
+
+        .category-picker-label,
+        .exercises-section-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .exercises-section-label {
+            margin-top: 20px;
+        }
+
+        .category-picker {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 4px;
+        }
+
+        .category-chip {
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1.5px solid transparent;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .category-chip:hover {
+            border-color: var(--cat-color, var(--border-color));
+            color: var(--cat-color, var(--text-primary));
+            background: var(--cat-bg, var(--bg-card-hover));
         }
 
         .exercises-list {
@@ -5150,6 +5327,23 @@
                             <span className="top-navbar-date">{getMonthYear(viewDate)}</span>
                         </div>
                         <div className="top-navbar-right">
+                            {/* View Switcher Segmented Control */}
+                            <div className="nav-view-toggle">
+                                <button
+                                    className={`nav-view-btn ${appView === 'finance' ? 'active-finance' : ''}`}
+                                    onClick={() => setAppView('finance')}
+                                    title="Finance Tracker"
+                                >
+                                    💰 Finance
+                                </button>
+                                <button
+                                    className={`nav-view-btn ${appView === 'fitness' ? 'active-fitness' : ''}`}
+                                    onClick={() => setAppView('fitness')}
+                                    title="Fitness Tracker"
+                                >
+                                    🏋️ Fitness
+                                </button>
+                            </div>
                             {/* Theme Toggle Button */}
                             <button className="theme-toggle-nav" onClick={toggleTheme} title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
                                 {theme === 'dark' ? '☀️' : '🌙'}
@@ -5170,6 +5364,24 @@
                     <button className="theme-toggle" onClick={toggleTheme} title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
                         {theme === 'dark' ? '☀️' : '🌙'}
                     </button>
+
+                    {/* Floating View Toggle Pill (visible when navbar hidden) */}
+                    <div className="floating-view-toggle">
+                        <button
+                            className={`floating-view-btn ${appView === 'finance' ? 'active-finance' : ''}`}
+                            onClick={() => setAppView('finance')}
+                            title="Finance Tracker"
+                        >
+                            💰
+                        </button>
+                        <button
+                            className={`floating-view-btn ${appView === 'fitness' ? 'active-fitness' : ''}`}
+                            onClick={() => setAppView('fitness')}
+                            title="Fitness Tracker"
+                        >
+                            🏋️
+                        </button>
+                    </div>
 
                     {/* Sidebar Overlay */}
                     <div className={`sidebar-overlay ${sidebarOpen ? 'active' : ''}`} onClick={() => setSidebarOpen(false)} />
@@ -5370,22 +5582,6 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-
-                    {/* App View Switcher */}
-                    <div className="app-view-switcher">
-                        <button
-                            className={`app-view-tab ${appView === 'finance' ? 'active' : ''}`}
-                            onClick={() => setAppView('finance')}
-                        >
-                            Finance Tracker
-                        </button>
-                        <button
-                            className={`app-view-tab ${appView === 'fitness' ? 'active' : ''}`}
-                            onClick={() => setAppView('fitness')}
-                        >
-                            Fitness Tracker
-                        </button>
                     </div>
 
                     {/* Fitness View */}
@@ -5828,6 +6024,19 @@
         // =====================
         // Fitness Tracker Component
         // =====================
+        const WORKOUT_CATEGORIES = [
+            { id: 'chest',    label: 'Chest Day',    color: '#EF4444', bg: 'rgba(239,68,68,0.15)'   },
+            { id: 'back',     label: 'Back Day',     color: '#3B82F6', bg: 'rgba(59,130,246,0.15)'  },
+            { id: 'legs',     label: 'Leg Day',      color: '#10B981', bg: 'rgba(16,185,129,0.15)'  },
+            { id: 'shoulders',label: 'Shoulder Day', color: '#F59E0B', bg: 'rgba(245,158,11,0.15)'  },
+            { id: 'arms',     label: 'Arms Day',     color: '#8B5CF6', bg: 'rgba(139,92,246,0.15)'  },
+            { id: 'push',     label: 'Push Day',     color: '#F97316', bg: 'rgba(249,115,22,0.15)'  },
+            { id: 'pull',     label: 'Pull Day',     color: '#06B6D4', bg: 'rgba(6,182,212,0.15)'   },
+            { id: 'fullbody', label: 'Full Body',    color: '#EC4899', bg: 'rgba(236,72,153,0.15)'  },
+            { id: 'cardio',   label: 'Cardio',       color: '#84CC16', bg: 'rgba(132,204,22,0.15)'  },
+            { id: 'rest',     label: 'Rest Day',     color: '#6B7280', bg: 'rgba(107,114,128,0.15)' },
+        ];
+
         function FitnessTracker({ user }) {
             const storageKey = `fitness_${user.id}`;
             const [currentDate, setCurrentDate] = React.useState(new Date());
@@ -5835,6 +6044,7 @@
             const [selectedDay, setSelectedDay] = React.useState(null);
             const [workoutModalOpen, setWorkoutModalOpen] = React.useState(false);
             const [exercises, setExercises] = React.useState([]);
+            const [workoutCategory, setWorkoutCategory] = React.useState('');
             const [newExercise, setNewExercise] = React.useState({ name: '', weight: '', sets: '', reps: '' });
 
             React.useEffect(() => {
@@ -5858,11 +6068,14 @@
             const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
             const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
+            const getCategoryMeta = (id) => WORKOUT_CATEGORIES.find(c => c.id === id) || null;
+
             const openDayWorkout = (day) => {
                 const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const label = `${monthNames[month]} ${day}, ${year}`;
                 setSelectedDay({ day, dateKey, label });
                 setExercises((workouts[dateKey]?.exercises || []).map(e => ({...e})));
+                setWorkoutCategory(workouts[dateKey]?.category || '');
                 setNewExercise({ name: '', weight: '', sets: '', reps: '' });
                 setWorkoutModalOpen(true);
             };
@@ -5884,30 +6097,28 @@
 
             const saveWorkout = () => {
                 const updated = { ...workouts };
-                if (exercises.length === 0) {
+                if (exercises.length === 0 && !workoutCategory) {
                     delete updated[selectedDay.dateKey];
                 } else {
-                    updated[selectedDay.dateKey] = { exercises };
+                    updated[selectedDay.dateKey] = { category: workoutCategory, exercises };
                 }
                 saveWorkouts(updated);
                 setWorkoutModalOpen(false);
             };
 
             // Stats
-            const totalWorkoutsThisMonth = Object.keys(workouts).filter(k =>
-                k.startsWith(`${year}-${String(month + 1).padStart(2, '0')}`)
-            ).length;
-
+            const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+            const thisMonthEntries = Object.entries(workouts).filter(([k]) => k.startsWith(monthPrefix));
+            const totalWorkoutsThisMonth = thisMonthEntries.length;
             const totalWorkoutsAllTime = Object.keys(workouts).length;
-
-            const totalExercisesThisMonth = Object.entries(workouts)
-                .filter(([k]) => k.startsWith(`${year}-${String(month + 1).padStart(2, '0')}`))
-                .reduce((sum, [, v]) => sum + (v.exercises?.length || 0), 0);
+            const totalExercisesThisMonth = thisMonthEntries.reduce((sum, [, v]) => sum + (v.exercises?.length || 0), 0);
 
             // Build calendar grid
             const calendarDays = [];
             for (let i = 0; i < firstDay; i++) calendarDays.push(null);
             for (let d = 1; d <= daysInMonth; d++) calendarDays.push(d);
+
+            const activeCatMeta = getCategoryMeta(workoutCategory);
 
             return (
                 <div className="fitness-container">
@@ -5948,20 +6159,24 @@
                             if (!day) return <div key={`e-${i}`} className="calendar-cell empty" />;
                             const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                             const dayWorkout = workouts[dateKey];
-                            const hasWorkout = dayWorkout?.exercises?.length > 0;
+                            const hasWorkout = dayWorkout && (dayWorkout.exercises?.length > 0 || dayWorkout.category);
+                            const catMeta = getCategoryMeta(dayWorkout?.category);
                             const isToday = today.getFullYear() === year && today.getMonth() === month && today.getDate() === day;
-                            const exCount = hasWorkout ? dayWorkout.exercises.length : 0;
+                            const exCount = dayWorkout?.exercises?.length || 0;
                             return (
                                 <div
                                     key={day}
                                     className={`calendar-cell ${isToday ? 'today' : ''} ${hasWorkout ? 'has-workout' : ''}`}
+                                    style={catMeta ? {borderColor: catMeta.color, background: catMeta.bg} : {}}
                                     onClick={() => openDayWorkout(day)}
-                                    title={hasWorkout ? `${exCount} exercise${exCount !== 1 ? 's' : ''}` : 'Add workout'}
+                                    title={catMeta ? catMeta.label : (hasWorkout ? `${exCount} exercise${exCount !== 1 ? 's' : ''}` : 'Add workout')}
                                 >
-                                    <span className="calendar-day-number">{day}</span>
+                                    <span className="calendar-day-number" style={catMeta ? {color: catMeta.color} : {}}>{day}</span>
                                     {hasWorkout && (
                                         <div className="workout-indicator">
-                                            <span>{exCount} ex{exCount !== 1 ? 's' : ''}</span>
+                                            <span style={catMeta ? {background: catMeta.bg, color: catMeta.color} : {}}>
+                                                {catMeta ? catMeta.label.replace(' Day','') : `${exCount} ex`}
+                                            </span>
                                         </div>
                                     )}
                                 </div>
@@ -5976,10 +6191,33 @@
                                 <h3>Workout Log</h3>
                                 <span className="fitness-modal-date">{selectedDay.label}</span>
 
+                                {/* Category Picker */}
+                                <div className="category-picker-label">Workout Type</div>
+                                <div className="category-picker">
+                                    {WORKOUT_CATEGORIES.map(cat => (
+                                        <button
+                                            key={cat.id}
+                                            className={`category-chip ${workoutCategory === cat.id ? 'active' : ''}`}
+                                            style={{
+                                                '--cat-color': cat.color,
+                                                '--cat-bg': cat.bg,
+                                                borderColor: workoutCategory === cat.id ? cat.color : 'transparent',
+                                                background: workoutCategory === cat.id ? cat.bg : 'var(--bg-card-hover)',
+                                                color: workoutCategory === cat.id ? cat.color : 'var(--text-secondary)',
+                                            }}
+                                            onClick={() => setWorkoutCategory(workoutCategory === cat.id ? '' : cat.id)}
+                                            type="button"
+                                        >
+                                            {cat.label}
+                                        </button>
+                                    ))}
+                                </div>
+
                                 {/* Exercises List */}
+                                <div className="exercises-section-label">Exercises</div>
                                 <div className="exercises-list">
                                     {exercises.length === 0 ? (
-                                        <div className="empty-state" style={{fontSize:'0.85rem', padding:'16px 0'}}>
+                                        <div className="empty-state" style={{fontSize:'0.85rem', padding:'14px 0'}}>
                                             No exercises yet — add one below
                                         </div>
                                     ) : (
@@ -5992,7 +6230,7 @@
                                                     )}
                                                     {(ex.sets || ex.reps) && (
                                                         <span className="exercise-sets">
-                                                            {ex.sets && `${ex.sets} sets`}{ex.sets && ex.reps && ' × '}{ex.reps && `${ex.reps} reps`}
+                                                            {ex.sets && `${ex.sets}×`}{ex.reps && `${ex.reps}`}
                                                         </span>
                                                     )}
                                                 </div>
@@ -6023,7 +6261,7 @@
                                     />
                                     <button type="button" onClick={addExercise}>Add</button>
                                 </div>
-                                <div style={{display:'flex', gap:'8px', marginBottom:'16px'}}>
+                                <div style={{display:'flex', gap:'8px', marginBottom:'20px'}}>
                                     <input
                                         type="number"
                                         placeholder="Sets"
