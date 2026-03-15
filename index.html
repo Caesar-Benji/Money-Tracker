@@ -6171,7 +6171,6 @@
         ];
 
         function FitnessTracker({ user }) {
-            const storageKey = `fitness_${user.id}`;
             const [currentDate, setCurrentDate] = React.useState(new Date());
             const [workouts, setWorkouts] = React.useState({});
             const [selectedDay, setSelectedDay] = React.useState(null);
@@ -6179,18 +6178,28 @@
             const [exercises, setExercises] = React.useState([]);
             const [workoutCategory, setWorkoutCategory] = React.useState('');
             const [newExercise, setNewExercise] = React.useState({ name: '', weight: '', sets: '', reps: '' });
+            const [fitnessLoading, setFitnessLoading] = React.useState(true);
+            const [saving, setSaving] = React.useState(false);
 
+            // Load all workouts from Supabase on mount
             React.useEffect(() => {
-                const stored = localStorage.getItem(storageKey);
-                if (stored) {
-                    try { setWorkouts(JSON.parse(stored)); } catch(e) {}
-                }
+                const load = async () => {
+                    setFitnessLoading(true);
+                    const { data, error } = await supabase
+                        .from('workouts')
+                        .select('date, category, exercises')
+                        .eq('user_id', user.id);
+                    if (!error && data) {
+                        const map = {};
+                        data.forEach(row => {
+                            map[row.date] = { category: row.category || '', exercises: row.exercises || [] };
+                        });
+                        setWorkouts(map);
+                    }
+                    setFitnessLoading(false);
+                };
+                load();
             }, []);
-
-            const saveWorkouts = (data) => {
-                localStorage.setItem(storageKey, JSON.stringify(data));
-                setWorkouts(data);
-            };
 
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
@@ -6228,15 +6237,45 @@
                 setExercises(prev => prev.filter((_, i) => i !== index));
             };
 
-            const saveWorkout = () => {
-                const updated = { ...workouts };
-                if (exercises.length === 0 && !workoutCategory) {
-                    delete updated[selectedDay.dateKey];
-                } else {
-                    updated[selectedDay.dateKey] = { category: workoutCategory, exercises };
+            const saveWorkout = async () => {
+                setSaving(true);
+                const isEmpty = exercises.length === 0 && !workoutCategory;
+                try {
+                    if (isEmpty) {
+                        // Remove the row entirely if nothing to save
+                        await supabase
+                            .from('workouts')
+                            .delete()
+                            .eq('user_id', user.id)
+                            .eq('date', selectedDay.dateKey);
+                        setWorkouts(prev => {
+                            const next = { ...prev };
+                            delete next[selectedDay.dateKey];
+                            return next;
+                        });
+                    } else {
+                        // Upsert — inserts or updates based on unique(user_id, date)
+                        const { error } = await supabase
+                            .from('workouts')
+                            .upsert({
+                                user_id: user.id,
+                                date: selectedDay.dateKey,
+                                category: workoutCategory || null,
+                                exercises: exercises
+                            }, { onConflict: 'user_id,date' });
+                        if (error) throw error;
+                        setWorkouts(prev => ({
+                            ...prev,
+                            [selectedDay.dateKey]: { category: workoutCategory, exercises }
+                        }));
+                    }
+                    setWorkoutModalOpen(false);
+                } catch (err) {
+                    console.error('Error saving workout:', err);
+                    alert('Failed to save workout. Please try again.');
+                } finally {
+                    setSaving(false);
                 }
-                saveWorkouts(updated);
-                setWorkoutModalOpen(false);
             };
 
             // Stats
@@ -6252,6 +6291,17 @@
             for (let d = 1; d <= daysInMonth; d++) calendarDays.push(d);
 
             const activeCatMeta = getCategoryMeta(workoutCategory);
+
+            if (fitnessLoading) {
+                return (
+                    <div className="fitness-container" style={{display:'flex', alignItems:'center', justifyContent:'center', minHeight:'40vh'}}>
+                        <div style={{textAlign:'center'}}>
+                            <div className="loading-spinner"></div>
+                            <p style={{marginTop:'12px', color:'var(--text-secondary)', fontSize:'0.9rem'}}>Loading workouts...</p>
+                        </div>
+                    </div>
+                );
+            }
 
             return (
                 <div className="fitness-container">
@@ -6414,8 +6464,10 @@
                                 </div>
 
                                 <div className="modal-actions">
-                                    <button className="btn-cancel" onClick={() => setWorkoutModalOpen(false)}>Cancel</button>
-                                    <button className="btn-save" onClick={saveWorkout}>Save Workout</button>
+                                    <button className="btn-cancel" onClick={() => setWorkoutModalOpen(false)} disabled={saving}>Cancel</button>
+                                    <button className="btn-save" onClick={saveWorkout} disabled={saving}>
+                                        {saving ? 'Saving...' : 'Save Workout'}
+                                    </button>
                                 </div>
                             </div>
                         </div>
