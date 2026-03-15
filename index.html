@@ -804,10 +804,16 @@
         }
 
         @media (max-width: 768px) {
+            /* Hide the navbar segmented control — the floating pill handles mobile */
+            .nav-view-toggle {
+                display: none;
+            }
+            /* Floating pill: sits left of theme toggle (right: 70px + 44px + 11px = 125px) */
             .floating-view-toggle {
                 top: 15px;
                 right: 125px;
                 border-radius: 13px;
+                padding: 3px;
             }
             .floating-view-btn {
                 width: 36px;
@@ -815,9 +821,17 @@
                 font-size: 1.05rem;
                 border-radius: 10px;
             }
-            .nav-view-btn {
-                padding: 5px 8px;
-                font-size: 0.62rem;
+        }
+
+        @media (max-width: 480px) {
+            /* Tuck pill even closer on very small screens */
+            .floating-view-toggle {
+                right: 120px;
+            }
+            .floating-view-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.95rem;
             }
         }
 
@@ -3246,7 +3260,7 @@
         .fitness-container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px 20px 100px;
+            padding: 100px 20px 100px;
         }
 
         .fitness-header {
@@ -3597,30 +3611,149 @@
         }
 
         @media (max-width: 768px) {
-            .calendar-cell {
-                min-height: 55px;
-                padding: 5px;
+            /* Fitness container: less top padding on mobile (floating buttons are smaller) */
+            .fitness-container {
+                padding: 80px 14px 90px;
             }
-            .calendar-day-number {
-                font-size: 0.75rem;
+
+            .fitness-header h1 {
+                font-size: 1.5rem;
             }
-            .workout-indicator span {
-                font-size: 0.52rem;
-                padding: 1px 3px;
-            }
-            .fitness-calendar {
-                gap: 4px;
-                padding: 10px;
-            }
-            .add-exercise-form {
-                grid-template-columns: 1fr 80px auto;
-            }
+
+            /* Stats bar: 3 equal columns, compact */
             .fitness-stats-bar {
-                grid-template-columns: repeat(3, 1fr);
                 gap: 8px;
+            }
+            .fitness-stat-card {
+                padding: 12px 8px;
+                border-radius: 12px;
             }
             .fitness-stat-value {
                 font-size: 1.3rem;
+                letter-spacing: -0.5px;
+            }
+            .fitness-stat-label {
+                font-size: 0.6rem;
+                letter-spacing: 0.3px;
+            }
+
+            /* Calendar nav */
+            .fitness-calendar-nav {
+                padding: 10px 14px;
+                border-radius: 13px;
+            }
+            .fitness-calendar-nav span {
+                font-size: 0.95rem;
+            }
+            .fitness-calendar-nav button {
+                width: 32px;
+                height: 32px;
+                font-size: 1.1rem;
+            }
+
+            /* Calendar grid */
+            .fitness-calendar {
+                gap: 3px;
+                padding: 10px;
+                border-radius: 16px;
+            }
+            .calendar-day-header {
+                font-size: 0.6rem;
+                padding: 6px 0 8px;
+            }
+            .calendar-cell {
+                min-height: 52px;
+                padding: 5px 4px;
+                border-radius: 9px;
+            }
+            .calendar-day-number {
+                font-size: 0.72rem;
+            }
+            .workout-indicator span {
+                font-size: 0.5rem;
+                padding: 1px 3px;
+                border-radius: 4px;
+            }
+
+            /* Workout modal */
+            .fitness-modal {
+                width: 96vw;
+                max-height: 92vh;
+                border-radius: 18px;
+            }
+
+            /* Category chips: slightly smaller on mobile */
+            .category-chip {
+                padding: 5px 10px;
+                font-size: 0.7rem;
+            }
+
+            /* Exercise item: handle overflow on narrow screens */
+            .exercise-item {
+                padding: 9px 10px;
+            }
+            .exercise-name {
+                font-size: 0.82rem;
+                max-width: 120px;
+            }
+            .exercise-weight {
+                font-size: 0.7rem;
+                padding: 1px 6px;
+            }
+            .exercise-sets {
+                display: none; /* hide sets/reps text on small screens, shown inline */
+            }
+
+            /* Add exercise form: full-width name, inline weight + button */
+            .add-exercise-form {
+                grid-template-columns: 1fr 70px auto;
+            }
+            .add-exercise-form input {
+                padding: 9px 10px;
+                font-size: 0.82rem;
+            }
+            .add-exercise-form button {
+                padding: 9px 12px;
+                font-size: 0.82rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fitness-container {
+                padding: 75px 10px 90px;
+            }
+
+            /* On very small screens: stack stats 2+1 */
+            .fitness-stats-bar {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+            .fitness-stat-value {
+                font-size: 1.15rem;
+            }
+            .fitness-stat-label {
+                font-size: 0.55rem;
+            }
+
+            /* Calendar cells even more compact */
+            .calendar-cell {
+                min-height: 44px;
+                padding: 4px 3px;
+            }
+            .calendar-day-number {
+                font-size: 0.65rem;
+            }
+            .workout-indicator {
+                display: none; /* just rely on the colored border */
+            }
+
+            /* Category chips: tight wrap */
+            .category-picker {
+                gap: 5px;
+            }
+            .category-chip {
+                padding: 4px 9px;
+                font-size: 0.67rem;
             }
         }
 
